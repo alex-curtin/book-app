@@ -1,6 +1,4 @@
 const express = require('express');
-const request = require('request');
-const config = require('config');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 
@@ -74,7 +72,28 @@ router.post('/', auth,
       console.error(err.message);
       res.status(500).send('Server error')
     }
-  })
+  });
+
+// @route    PUT api/profile/read
+// @desc     Add book to read list
+// @access   Private
+// router.put('/read', auth, async (req, res) => {
+//   const book = req.body;
+//   book.read = true;
+
+//   try {
+//     const profile = await Profile.findOne({ user: req.user.id })
+
+//     profile.books.push(book);
+
+//     await profile.save();
+
+//     res.json(profile);
+//   } catch (e) {
+//     console.error(e.message);
+//     res.status(500).send('Server error')
+//   }
+// })
 
 // @route    GET api/profile
 // @desc     Get all profiles
@@ -109,7 +128,7 @@ router.get('/user/:user_id', async (req, res) => {
 })
 
 // @route    DELETE api/profile
-// @desc     Delete profile, user, posts
+// @desc     Delete profile, user
 // @access   Private
 router.delete('/', auth, async (req, res) => {
   try {
