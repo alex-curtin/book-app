@@ -11,6 +11,20 @@ const ProfileSchema = new mongoose.Schema({
   bio: {
     type: String
   },
+  books: [
+    {
+      book: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'book'
+      },
+      status: {
+        type: String
+      },
+      favorite: {
+        type: Boolean
+      }
+    }
+  ],
   social: {
     twitter: {
       type: String

@@ -24,12 +24,18 @@ router.get('/', async (req, res) => {
 // @access   Private
 router.post('/', [
   auth,
-  check('title', 'Title is required').not().isEmpty()
+  check('title', 'Title is required').not().isEmpty(),
 ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() })
+    }
+
+    let book = Book.findOne({ googleId: req.body.googleId });
+
+    if (book) {
+      return res.status(400).json({ errors: [{ msg: 'Book already exists' }] })
     }
 
     try {
@@ -41,7 +47,7 @@ router.post('/', [
         googleId: req.body.googleId
       });
 
-      const book = await newBook.save();
+      book = await newBook.save();
 
       res.json(book);
     } catch (e) {

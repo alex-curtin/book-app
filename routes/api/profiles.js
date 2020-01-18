@@ -4,6 +4,7 @@ const auth = require('../../middleware/auth');
 
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const Book = require('../../models/BookList');
 // const Post = require('../../models/Post');
 
 
@@ -74,27 +75,6 @@ router.post('/', auth,
     }
   });
 
-// @route    PUT api/profile/read
-// @desc     Add book to read list
-// @access   Private
-// router.put('/read', auth, async (req, res) => {
-//   const book = req.body;
-//   book.read = true;
-
-//   try {
-//     const profile = await Profile.findOne({ user: req.user.id })
-
-//     profile.books.push(book);
-
-//     await profile.save();
-
-//     res.json(profile);
-//   } catch (e) {
-//     console.error(e.message);
-//     res.status(500).send('Server error')
-//   }
-// })
-
 // @route    GET api/profile
 // @desc     Get all profiles
 // @access   Public
@@ -113,7 +93,9 @@ router.get('/', async (req, res) => {
 // @access   Public
 router.get('/user/:user_id', async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.params.user_id }).populate('user', ['name']);
+    const profile = await Profile.findOne({ user: req.params.user_id })
+      .populate('user', ['name'])
+      .populate('book-list');
 
     if (!profile) return res.status(400).json({ msg: 'Profile not found' });
 
@@ -126,6 +108,7 @@ router.get('/user/:user_id', async (req, res) => {
     res.status(500).send('Server Error');
   }
 })
+
 
 // @route    DELETE api/profile
 // @desc     Delete profile, user
@@ -149,6 +132,33 @@ router.delete('/', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 })
+
+// @route    PUT api/profile/books
+// @desc     Add book to list
+// @access   Private
+router.put('/books', auth, async (req, res) => {
+  const { book, status, favorite } = req.body;
+
+  const newBook = {
+    book,
+    status,
+    favorite
+  }
+
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    profile.books.push(newBook);
+
+    await profile.save();
+
+    res.json(profile);
+  } catch (e) {
+    console.log(e.message);
+    res.status(500).send('Server Error')
+  }
+})
+
 
 
 module.exports = router;

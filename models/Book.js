@@ -10,9 +10,6 @@ const BookSchema = new mongoose.Schema({
       type: String,
     }
   ],
-  year: {
-    type: String,
-  },
   imgUrl: {
     type: String,
   },
