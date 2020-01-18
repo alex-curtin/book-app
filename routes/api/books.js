@@ -32,13 +32,13 @@ router.post('/', [
       return res.status(400).json({ errors: errors.array() })
     }
 
-    let book = Book.findOne({ googleId: req.body.googleId });
-
-    if (book) {
-      return res.status(400).json({ errors: [{ msg: 'Book already exists' }] })
-    }
-
     try {
+      let book = await Book.findOne({ googleId: req.body.googleId });
+
+      if (book) {
+        return res.json(book);
+      }
+
       const newBook = new Book({
         title: req.body.title,
         authors: req.body.authors,

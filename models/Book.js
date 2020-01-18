@@ -19,7 +19,8 @@ const BookSchema = new mongoose.Schema({
   },
   googleId: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   }
 });
 
