@@ -4,7 +4,7 @@ const auth = require('../../middleware/auth');
 
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
-const Book = require('../../models/BookList');
+const Book = require('../../models/Book');
 // const Post = require('../../models/Post');
 
 
@@ -94,8 +94,7 @@ router.get('/', async (req, res) => {
 router.get('/user/:user_id', async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.params.user_id })
-      .populate('user', ['name'])
-      .populate('book-list');
+      .populate('user', ['name']);
 
     if (!profile) return res.status(400).json({ msg: 'Profile not found' });
 
@@ -134,7 +133,7 @@ router.delete('/', auth, async (req, res) => {
 })
 
 // @route    PUT api/profile/books
-// @desc     Add book to list
+// @desc     Add book to list or update status
 // @access   Private
 router.put('/books', auth, async (req, res) => {
   const { book, status, favorite } = req.body;
@@ -148,7 +147,15 @@ router.put('/books', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id });
 
-    profile.books.push(newBook);
+    //check if book is already on list
+    const replaceIndex = profile.books.map(el => el.book.toString()).indexOf(book);
+
+    if (replaceIndex >= 0) {
+      profile.books[replaceIndex] = newBook;
+    } else {
+      profile.books.push(newBook);
+    }
+
 
     await profile.save();
 
