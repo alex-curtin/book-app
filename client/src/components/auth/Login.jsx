@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
@@ -19,12 +19,17 @@ const Login = ({ login, isAuthenticated }) => {
     login(email, password);
   }
 
+  // // Redirect if logged in
+  // if (isAuthenticated) {
+  //   return <Redirect to='/' />
+  // }
+
   return (
     <>
       <h1>Sign In</h1>
       <form onSubmit={e => handleSubmit(e)}>
 
-        <div>
+        <div className="m">
           <input
             type="email"
             placeholder="Email address"
@@ -35,7 +40,7 @@ const Login = ({ login, isAuthenticated }) => {
           />
         </div>
 
-        <div>
+        <div className="m">
           <input
             type="password"
             placeholder="Password"
@@ -53,6 +58,9 @@ const Login = ({ login, isAuthenticated }) => {
         />
 
       </form>
+      <p className='m'>
+        <Link to='/register'>...or Create an Account</Link>
+      </p>
     </>
   )
 }

@@ -22,8 +22,16 @@
   display: flex;
 }
 
+.flex-col {
+  flex-direction: column;
+}
+
 .align-center {
   align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
 }
 
 .btn {
@@ -33,7 +41,7 @@
   padding: 0.4rem 1.3rem;
   border: none;
   border-radius: 3px;
-  box-shadow: 0 1px 3px 0 #aaa;
+  box-shadow: 0 1px 1px 0 #ddd;
   margin-right: 0.5rem;
 }
 
