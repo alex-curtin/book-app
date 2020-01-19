@@ -1,0 +1,56 @@
+@import 'variables';
+@import 'global';
+@import 'margin';
+@import 'padding';
+
+
+// Utilites
+
+
+
+.bg-dark {
+  background-color: $dark-color;
+  color: $light-color;
+}
+
+.flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.btn {
+  display: inline-block;
+  background-color: $light-color;
+  color: $dark-color;
+  padding: 0.4rem 1.3rem;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px 0 #aaa;
+  margin-right: 0.5rem;
+}
+
+// Navbar
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  ul {
+    display: flex;
+    align-items: center;
+  }
+  li {
+    padding: 0.5rem;
+    margin: 0 0.25rem;
+  }
+  a {
+    color: $light-color;
+  }
+}
