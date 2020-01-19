@@ -1,5 +1,7 @@
 const express = require('express');
 const connectDB = require('./config/db');
+const cors = require('cors');
+const logger = require('morgan');
 
 const app = express();
 
@@ -8,6 +10,8 @@ connectDB();
 
 // Init middleware
 app.use(express.json({ extended: false }));
+app.use(logger('dev'));
+app.use(cors());
 
 // Define Routes
 app.use('/api/users', require('./routes/api/users'));

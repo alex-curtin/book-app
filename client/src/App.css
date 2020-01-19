@@ -15,7 +15,9 @@ a {
 ul {
   list-style: none; }
 
-input[type='text'] {
+input[type='text'],
+input[type='email'],
+input[type='password'] {
   padding: 0.4rem;
   margin: 0 0.4rem;
   font-size: 1rem;
@@ -68,6 +70,12 @@ input[type='text'] {
 
 .pr, .px {
   padding-right: 0.5rem; }
+
+.container {
+  max-width: 1200px;
+  margin: 6rem auto 3rem;
+  overflow: hidden;
+  padding: 0 2rem; }
 
 .bg-dark {
   background-color: #333;

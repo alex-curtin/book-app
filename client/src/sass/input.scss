@@ -6,7 +6,12 @@
 
 // Utilites
 
-
+.container {
+  max-width: 1200px;
+  margin: 6rem auto 3rem;
+  overflow: hidden;
+  padding: 0 2rem;
+}
 
 .bg-dark {
   background-color: $dark-color;

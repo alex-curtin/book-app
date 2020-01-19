@@ -1,4 +1,4 @@
-// Global
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -20,7 +20,9 @@ ul {
   list-style: none;
 }
 
-input[type='text'] {
+input[type='text'],
+input[type='email'],
+input[type='password'] {
   padding: 0.4rem;
   margin: 0 0.4rem;
   font-size: 1rem;
