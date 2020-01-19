@@ -5,7 +5,7 @@ import './App.css';
 import Navbar from './components/layout/Navbar';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
-import SearchBooks from './components/books/SearchBooks';
+import BooksPage from './components/books/BooksPage';
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -31,8 +31,8 @@ const App = () => {
             component={Register}
           />
           <Route
-            exact path="/search"
-            component={SearchBooks}
+            exact path="/books"
+            component={BooksPage}
           />
         </Switch>
       </section>
