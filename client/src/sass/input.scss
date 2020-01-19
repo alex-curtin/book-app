@@ -2,6 +2,7 @@
 @import 'global';
 @import 'margin';
 @import 'padding';
+@import 'forms';
 
 
 // Utilites
@@ -42,7 +43,6 @@
   border: none;
   border-radius: 3px;
   box-shadow: 0 1px 1px 0 #ddd;
-  margin-right: 0.5rem;
 }
 
 // Navbar

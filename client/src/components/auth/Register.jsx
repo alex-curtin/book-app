@@ -30,17 +30,17 @@ const Register = ({ register, isAuthenticated }) => {
     }
   }
 
-  // // Redirect if logged in
-  // if (isAuthenticated) {
-  //   return <Redirect to='/' />
-  // }
+  // Redirect if logged in
+  if (isAuthenticated) {
+    return <Redirect to='/' />
+  }
 
   return (
     <>
       <h1>Create An Account</h1>
-      <form className="flex flex-col justify-center" onSubmit={e => handleSubmit(e)}>
+      <form className="form" onSubmit={e => handleSubmit(e)}>
 
-        <div className="m">
+        <div className="mb">
           <input
             type="text"
             placeholder="Name..."
@@ -51,7 +51,7 @@ const Register = ({ register, isAuthenticated }) => {
           />
         </div>
 
-        <div className="m">
+        <div className="mb">
           <input
             type="email"
             placeholder="Email address..."
@@ -62,7 +62,7 @@ const Register = ({ register, isAuthenticated }) => {
           />
         </div>
 
-        <div className="m">
+        <div className="mb">
           <input
             type="password"
             placeholder="Password"
@@ -73,7 +73,7 @@ const Register = ({ register, isAuthenticated }) => {
           />
         </div>
 
-        <div className="m">
+        <div className="mb">
           <input
             type="password"
             placeholder="Confirm Password"
@@ -92,7 +92,7 @@ const Register = ({ register, isAuthenticated }) => {
 
       </form>
       <p className='m'>
-        Already have an accout?
+        Already have an accout? {' '}
         <Link to='/login'>Log In</Link>
       </p>
     </>

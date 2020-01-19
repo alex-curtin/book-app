@@ -21,7 +21,8 @@ input[type='password'] {
   padding: 0.4rem;
   margin: 0 0.4rem;
   font-size: 1rem;
-  border: 1px solid #333; }
+  border: 1px solid #ccc;
+  border-radius: 2px; }
 
 .m {
   margin: 0.5rem; }
@@ -47,6 +48,12 @@ input[type='password'] {
 .mr, .mx {
   margin-right: 0.5rem; }
 
+.mb, .my {
+  margin-bottom: 0.5rem; }
+
+.mt, .my {
+  margin-top: 0.5rem; }
+
 .p {
   padding: 0.5rem; }
 
@@ -70,6 +77,26 @@ input[type='password'] {
 
 .pr, .px {
   padding-right: 0.5rem; }
+
+.form {
+  margin: 0.3rem 0 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+  .form input[type='text'],
+  .form input[type='email'],
+  .form input[type='password'] {
+    padding: 0.4rem;
+    margin: 0 0.4rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    width: 100%; }
+  .form .btn {
+    padding: 0.4rem;
+    margin: 0 0.4rem;
+    font-size: 1.2rem;
+    width: 100%; }
 
 .container {
   max-width: 1200px;
@@ -100,8 +127,7 @@ input[type='password'] {
   padding: 0.4rem 1.3rem;
   border: none;
   border-radius: 3px;
-  box-shadow: 0 1px 1px 0 #ddd;
-  margin-right: 0.5rem; }
+  box-shadow: 0 1px 1px 0 #ddd; }
 
 .navbar {
   display: flex;

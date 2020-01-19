@@ -19,17 +19,17 @@ const Login = ({ login, isAuthenticated }) => {
     login(email, password);
   }
 
-  // // Redirect if logged in
-  // if (isAuthenticated) {
-  //   return <Redirect to='/' />
-  // }
+  // Redirect if logged in
+  if (isAuthenticated) {
+    return <Redirect to='/' />
+  }
 
   return (
     <>
       <h1>Sign In</h1>
-      <form onSubmit={e => handleSubmit(e)}>
+      <form className="form" onSubmit={e => handleSubmit(e)}>
 
-        <div className="m">
+        <div className="mb">
           <input
             type="email"
             placeholder="Email address"
@@ -40,7 +40,7 @@ const Login = ({ login, isAuthenticated }) => {
           />
         </div>
 
-        <div className="m">
+        <div className="mb">
           <input
             type="password"
             placeholder="Password"
