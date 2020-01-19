@@ -67,3 +67,30 @@
     color: $light-color;
   }
 }
+
+// Books Page
+.search-bar {
+  display: flex;
+  input {
+    font-size: 1.4rem;
+    border: 2px solid #aaa;
+    border-radius: 5px 0 0 5px;
+    padding: 0.2rem 0.4rem;
+  }
+  button {
+    font-size: 1.4rem;
+    padding: 0.2rem 0.5rem;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    background-color: #aaa;
+    color: #fff;
+  }
+}
+
+.book-item {
+  display: inline-block;
+  margin: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px 0 #bbb;
+  border-radius: 3px;
+}

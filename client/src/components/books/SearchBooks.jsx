@@ -16,7 +16,7 @@ const SearchBooks = ({ getBooks }) => {
     <>
       <h2>Search for books</h2>
       <form
-
+        className="search-bar"
         onSubmit={e => handleSubmit(e)}
       >
 
@@ -28,7 +28,7 @@ const SearchBooks = ({ getBooks }) => {
           required
         />
 
-        <button className="btn">
+        <button>
           <i className="fas fa-search"></i>
         </button>
 

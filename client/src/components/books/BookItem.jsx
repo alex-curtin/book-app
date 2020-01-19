@@ -11,7 +11,7 @@ const BookItem = ({ book: {
   }
 } }) => {
   return (
-    <div>
+    <div className="book-item">
       <img src={thumbnail} alt={title} />
 
       <p>{title}</p>
