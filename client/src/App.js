@@ -6,6 +6,7 @@ import Navbar from './components/layout/Navbar';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import BooksPage from './components/books/BooksPage';
+import Dashboard from './components/dashboard/Dashboard';
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -37,6 +38,10 @@ const App = () => {
           <Route
             exact path="/books"
             component={BooksPage}
+          />
+          <Route
+            exact path="/dashboard"
+            component={Dashboard}
           />
         </Switch>
       </section>

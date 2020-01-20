@@ -6,7 +6,7 @@ import {
 } from './types';
 
 // Get current users profile
-export const getCurrentProfile = () => async => dispatch => {
+export const getCurrentProfile = () => async dispatch => {
   try {
     const res = await axios.get('http://localhost:5000/api/profiles/me');
 

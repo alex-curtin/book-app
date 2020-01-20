@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addBook } from '../../actions/book';
 
+// TODO - deal with google books that have no images
+
 const BookItem = ({
   book: {
     id,
@@ -17,6 +19,7 @@ const BookItem = ({
   auth: {
     isAuthenticated
   },
+  profile: { profile },
   addBook
 }) => {
 
@@ -40,23 +43,24 @@ const BookItem = ({
         {authors.map(author => <p key={author}>{author}</p>)}
 
         {isAuthenticated && (
-          <div className="mt-1">
-            Add to list:
-          <button
-              className="btn"
-              value="read"
-              onClick={e => handleSubmit(e)}
-            >Read
-            </button>
+          profile !== null ?
+            <div className="mt-1">
+              Add to list:
+              <button
+                className="btn"
+                value="read"
+                onClick={e => handleSubmit(e)}
+              >Read
+              </button>
 
-            <button
-              className="btn"
-              value="to-read"
-              onClick={e => handleSubmit(e)}
-            >To-Read
-            </button>
-
-          </div>
+              <button
+                className="btn"
+                value="to-read"
+                onClick={e => handleSubmit(e)}
+              >To-Read
+              </button>
+            </div> :
+            <p className="mt-1">create a profile to add books to your lists</p>
         )}
       </div>
     </div>
@@ -66,10 +70,12 @@ const BookItem = ({
 BookItem.propTypes = {
   auth: PropTypes.object.isRequired,
   addBook: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.auth
+  auth: state.auth,
+  profile: state.profile
 })
 
 export default connect(mapStateToProps, { addBook })(BookItem);
