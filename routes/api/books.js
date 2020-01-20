@@ -42,7 +42,6 @@ router.post('/', [
       const newBook = new Book({
         title: req.body.title,
         authors: req.body.authors,
-        year: req.body.year,
         imgUrl: req.body.imgUrl,
         googleId: req.body.googleId
       });

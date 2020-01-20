@@ -21,7 +21,7 @@ const Register = ({ register, isAuthenticated }) => {
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value })
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (password !== password2) {
       alert('Passwords do not match')
