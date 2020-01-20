@@ -24,6 +24,20 @@ input[type='password'] {
   border: 1px solid #ccc;
   border-radius: 2px; }
 
+.text-center {
+  text-align: center; }
+
+.large {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 1rem; }
+
+.text-primary {
+  color: lightblue; }
+
+.text-secondary {
+  color: darkgreen; }
+
 .m {
   margin: 0.5rem; }
 
@@ -53,6 +67,12 @@ input[type='password'] {
 
 .mt, .my {
   margin-top: 0.5rem; }
+
+.mt-1, .my-1 {
+  margin-top: 1rem; }
+
+.mb-1, .my-1 {
+  margin-bottom: 1rem; }
 
 .p {
   padding: 0.5rem; }
@@ -148,7 +168,9 @@ input[type='password'] {
     color: #eee; }
 
 .search-bar {
-  display: flex; }
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem; }
   .search-bar input {
     font-size: 1.4rem;
     border: 2px solid #aaa;
@@ -162,11 +184,22 @@ input[type='password'] {
     background-color: #aaa;
     color: #fff; }
 
+.books {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
 .book-item {
-  display: inline-block;
+  width: 60%;
   margin: 0.5rem;
   padding: 1.5rem;
   box-shadow: 0 1px 3px 0 #bbb;
-  border-radius: 3px; }
+  border-radius: 3px;
+  display: flex; }
+
+.book-details {
+  margin: 0 0.5rem;
+  display: flex;
+  flex-direction: column; }
 
 /*# sourceMappingURL=App.css.map */

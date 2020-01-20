@@ -14,7 +14,7 @@ const SearchBooks = ({ getBooks }) => {
 
   return (
     <>
-      <h2>Search for books</h2>
+      <h2 className="text-center">Search for books</h2>
       <form
         className="search-bar"
         onSubmit={e => handleSubmit(e)}

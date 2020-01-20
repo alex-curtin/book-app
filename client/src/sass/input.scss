@@ -1,5 +1,6 @@
 @import 'variables';
 @import 'global';
+@import 'text';
 @import 'margin';
 @import 'padding';
 @import 'forms';
@@ -19,6 +20,7 @@
   color: $light-color;
 }
 
+// Flex
 .flex {
   display: flex;
 }
@@ -34,6 +36,7 @@
 .justify-center {
   justify-content: center;
 }
+
 
 .btn {
   display: inline-block;
@@ -71,6 +74,8 @@
 // Books Page
 .search-bar {
   display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
   input {
     font-size: 1.4rem;
     border: 2px solid #aaa;
@@ -87,10 +92,23 @@
   }
 }
 
+.books {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .book-item {
-  display: inline-block;
+  width: 60%;
   margin: 0.5rem;
   padding: 1.5rem;
   box-shadow: 0 1px 3px 0 #bbb;
   border-radius: 3px;
+  display: flex;
+}
+
+.book-details {
+  margin: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
 }

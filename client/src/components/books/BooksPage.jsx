@@ -8,13 +8,15 @@ const BooksPage = ({ book: { books, loading } }) => {
   return (
     <>
       <SearchBooks />
-      {books.length > 0 && (
-        books.map(book =>
-          <BookItem
-            key={book.id}
-            book={book}
-          />)
-      )}
+      <div className="books">
+        {books.length > 0 && (
+          books.map(book =>
+            <BookItem
+              key={book.id}
+              book={book}
+            />)
+        )}
+      </div>
     </>
   )
 }
