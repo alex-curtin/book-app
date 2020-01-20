@@ -2,7 +2,8 @@ import axios from 'axios';
 import {
   GET_BOOKS,
   BOOK_ERROR,
-  ADD_BOOK
+  ADD_BOOK,
+  UPDATE_PROFILE
 } from './types';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
@@ -28,7 +29,7 @@ export const getBooks = (query) => async dispatch => {
   }
 };
 
-// Add book to list 
+// Add a book
 export const addBook = (bookData, status) => async dispatch => {
   const config = {
     headers: {
@@ -37,14 +38,27 @@ export const addBook = (bookData, status) => async dispatch => {
   }
 
   try {
+    // Add book to books document
     const res = await axios.post('http://localhost:5000/api/books', bookData, config);
-
-
 
     dispatch({
       type: ADD_BOOK,
       payload: res.data
     })
+
+    const book = {
+      book: res.data._id,
+      status
+    }
+
+    // Add book to user profile books list
+    const resp = await axios.put('http://localhost:5000/api/profiles/books', book, config);
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: resp.data
+    });
+
   } catch (e) {
     dispatch({
       type: BOOK_ERROR,
