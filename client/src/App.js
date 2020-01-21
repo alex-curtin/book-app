@@ -8,6 +8,8 @@ import Register from './components/auth/Register';
 import BooksPage from './components/books/BooksPage';
 import Dashboard from './components/dashboard/Dashboard';
 
+import PrivateRoute from './components/routing/PrivateRoute';
+
 import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/auth';
@@ -39,7 +41,7 @@ const App = () => {
             exact path="/books"
             component={BooksPage}
           />
-          <Route
+          <PrivateRoute
             exact path="/dashboard"
             component={Dashboard}
           />
