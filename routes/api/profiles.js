@@ -8,12 +8,14 @@ const Book = require('../../models/Book');
 // const Post = require('../../models/Post');
 
 
-// @route    GET api/profile/me
+// @route    GET api/profiles/me
 // @desc     Get current users profile
 // @access   Private
 router.get('/me', auth, async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.user.id }).populate('user', ['name', 'avatar']);
+    const profile = await Profile.findOne({ user: req.user.id })
+      .populate('user', ['name'])
+      .populate('books.book');
 
     if (!profile) {
       return res.status(400).json({ msg: 'There is no profile for this user' });
