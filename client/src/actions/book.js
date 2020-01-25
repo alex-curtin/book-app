@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { setAlert } from './alert';
 import {
   GET_BOOKS,
   BOOK_ERROR,
@@ -38,7 +39,7 @@ export const addBook = (bookData, status) => async dispatch => {
   }
 
   try {
-    // Add book to books document
+    // Add book to database
     const res = await axios.post('http://localhost:5000/api/books', bookData, config);
 
     dispatch({
@@ -59,6 +60,7 @@ export const addBook = (bookData, status) => async dispatch => {
       payload: resp.data
     });
 
+    dispatch(setAlert('Book Added to Your List', 'success'));
   } catch (e) {
     dispatch({
       type: BOOK_ERROR,

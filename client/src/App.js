@@ -7,6 +7,7 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import BooksPage from './components/books/BooksPage';
 import Dashboard from './components/dashboard/Dashboard';
+import Alert from './components/layout/Alert';
 
 import PrivateRoute from './components/routing/PrivateRoute';
 
@@ -28,6 +29,7 @@ const App = () => {
     <Provider store={store}>
       <Navbar />
       <section className="container">
+        <Alert />
         <Switch>
           <Route
             exact path="/login"

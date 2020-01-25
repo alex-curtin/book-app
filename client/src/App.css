@@ -140,6 +140,19 @@ input[type='password'] {
 .justify-center {
   justify-content: center; }
 
+.alert {
+  padding: 1rem;
+  margin: 1rem 0;
+  color: #333;
+  font-weight: bold;
+  text-align: center; }
+
+.alert-danger {
+  color: red; }
+
+.alert-success {
+  color: green; }
+
 .btn {
   display: inline-block;
   background-color: #eee;

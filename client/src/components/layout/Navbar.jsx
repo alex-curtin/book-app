@@ -25,7 +25,7 @@ const Navbar = ({ logout, auth: { isAuthenticated } }) => {
   return (
     <nav className="navbar bg-dark">
       <h1 >
-        <Link to="/" className="flex align-center">
+        <Link to="/dashboard" className="flex align-center">
           <i className="fas fa-book-open fa-2x mr-1"></i>
           {' '}Book App
         </Link>
