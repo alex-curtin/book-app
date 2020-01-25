@@ -32,8 +32,7 @@ const Navbar = ({ logout, auth: { isAuthenticated } }) => {
       </h1>
       <ul className="nav-links">
         <li>
-          <input type="text" placeholder="Search..." />
-          <i className="fas fa-search"></i>
+          <Link to='/books'>Books</Link>
         </li>
         {isAuthenticated ? authLinks : guestLinks}
       </ul>
