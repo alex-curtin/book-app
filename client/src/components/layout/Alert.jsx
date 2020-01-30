@@ -12,7 +12,7 @@ const Alert = ({ alerts, removeAlert }) => (
       {alert.msg}{' '}
       <i
         onClick={() => removeAlert(alert.id)}
-        className="fas fa-times-circle"
+        className="fas fa-times"
       ></i>
     </div>
   ))
