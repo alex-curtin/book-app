@@ -3,10 +3,10 @@ import { Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import Navbar from './components/layout/Navbar';
-import Login from './components/auth/Login';
-import Register from './components/auth/Register';
-import BooksPage from './components/books/BooksPage';
-import Dashboard from './components/dashboard/Dashboard';
+import Login from './components/pages/auth/Login';
+import Register from './components/pages/auth/Register';
+import SearchBooks from './components/pages/SearchBooks';
+import Dashboard from './components/pages/Dashboard';
 import Alert from './components/layout/Alert';
 
 import PrivateRoute from './components/routing/PrivateRoute';
@@ -18,39 +18,27 @@ import setAuthToken from './utils/setAuthToken';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
-};
+}
 
 const App = () => {
   useEffect(() => {
-    store.dispatch(loadUser())
-  }, [])
+    store.dispatch(loadUser());
+  }, []);
 
   return (
     <Provider store={store}>
       <Navbar />
-      <section className="container">
+      <section className='container'>
         <Alert />
         <Switch>
-          <Route
-            exact path="/login"
-            component={Login}
-          />
-          <Route
-            exact path="/register"
-            component={Register}
-          />
-          <Route
-            exact path="/books"
-            component={BooksPage}
-          />
-          <PrivateRoute
-            exact path="/dashboard"
-            component={Dashboard}
-          />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/register' component={Register} />
+          <Route exact path='/books' component={SearchBooks} />
+          <PrivateRoute exact path='/dashboard' component={Dashboard} />
         </Switch>
       </section>
-    </Provider >
+    </Provider>
   );
-}
+};
 
 export default App;

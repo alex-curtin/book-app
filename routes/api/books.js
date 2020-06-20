@@ -17,19 +17,18 @@ router.get('/', async (req, res) => {
     console.log(e.message);
     res.status(500).send('Server Error');
   }
-})
+});
 
 // @route    POST api/books
 // @desc     Add a book
 // @access   Private
-router.post('/', [
-  auth,
-  check('title', 'Title is required').not().isEmpty(),
-],
+router.post(
+  '/',
+  [auth, check('title', 'Title is required').not().isEmpty()],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() })
+      return res.status(400).json({ errors: errors.array() });
     }
 
     try {
@@ -43,7 +42,8 @@ router.post('/', [
         title: req.body.title,
         authors: req.body.authors,
         imgUrl: req.body.imgUrl,
-        googleId: req.body.googleId
+        googleId: req.body.googleId,
+        description: req.body.description,
       });
 
       book = await newBook.save();
@@ -53,6 +53,7 @@ router.post('/', [
       console.log(e.message);
       res.status(500).send('Server Error');
     }
-  })
+  }
+);
 
 module.exports = router;
