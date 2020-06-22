@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { register } from '../../../actions/auth';
 import { setAlert } from '../../../actions/alert';
+import { Form } from '../../layout/Form';
+import { Button } from '../../layout/Button';
 
 const Register = ({ register, isAuthenticated, setAlert }) => {
   const [formData, setFormData] = useState({
@@ -35,8 +37,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
   return (
     <>
       <h1>Create An Account</h1>
-      <form className='form' onSubmit={(e) => handleSubmit(e)}>
-        <div className='mb'>
+      <Form className='form' onSubmit={(e) => handleSubmit(e)}>
           <input
             type='text'
             placeholder='Name...'
@@ -45,9 +46,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
             onChange={(e) => handleChange(e)}
             required
           />
-        </div>
 
-        <div className='mb'>
           <input
             type='email'
             placeholder='Email address...'
@@ -56,9 +55,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
             onChange={(e) => handleChange(e)}
             required
           />
-        </div>
 
-        <div className='mb'>
           <input
             type='password'
             placeholder='Password'
@@ -67,9 +64,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
             onChange={(e) => handleChange(e)}
             required
           />
-        </div>
 
-        <div className='mb'>
           <input
             type='password'
             placeholder='Confirm Password'
@@ -78,12 +73,11 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
             onChange={(e) => handleChange(e)}
             required
           />
-        </div>
 
-        <input type='submit' className='btn' value='Register' />
-      </form>
+        <Button as="input" type='submit' className='btn' value='Register' />
+      </Form>
       <p className='m'>
-        Already have an accout? <Link to='/login'>Log In</Link>
+        Already have an account? <Link to='/login'>Log In</Link>
       </p>
     </>
   );

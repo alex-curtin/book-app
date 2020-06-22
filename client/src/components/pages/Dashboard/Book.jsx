@@ -1,32 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { addBook } from '../../../actions/book';
+import BookWrapper from '../../layout/BookWrapper';
+import { Button } from '../../layout/Button';
 
-const Book = ({
-  book: {
+const Book = ({ item, addBook }) => {
+  const {
     title,
-    authors,
+    authors = [],
     imgUrl,
-  }
-}) => {
-  return (
-    <div className="book-item">
-      <img src={imgUrl} alt={title} />
+    description = 'no description available',
+  } = item.book;
 
-      <div className="book-details">
-        <strong>{title}</strong>
-        {authors.map(author => <p key={author}>{author}</p>)}
+  const setButton = () => {
+    return item.status === 'read' ? 'to-read' : 'read';
+  };
+
+  const toggleStatus = (e) => {
+    e.preventDefault();
+    addBook(item.book, setButton());
+  };
+  console.log(item);
+
+  return (
+    <BookWrapper className='book-item'>
+      <img src={imgUrl} alt={title} />
+      <div className='book-details'>
+        <div className='top'>
+          <h6>{title}</h6>
+          <p>by {authors.join(', ')}</p>
+        </div>
+        <small>{`${description.slice(0, 150).trim()}...`}</small>
+        <div className='bottom'>
+          <Button onClick={toggleStatus}>{`mark as ${setButton()}`}</Button>
+        </div>
       </div>
-    </div>
-  )
-}
+    </BookWrapper>
+  );
+};
 
 Book.propTypes = {
   auth: PropTypes.object.isRequired,
-}
+};
 
 const mapStateToProps = (state) => ({
-  auth: state.auth
-})
+  auth: state.auth,
+});
 
-export default connect(mapStateToProps)(Book);
+export default connect(mapStateToProps, { addBook })(Book);

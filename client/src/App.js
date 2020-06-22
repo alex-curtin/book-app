@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import './App.css';
+import GlobalStyles from './components/layout/GlobalStyles';
 
 import Navbar from './components/layout/Navbar';
 import Login from './components/pages/auth/Login';
@@ -27,16 +27,15 @@ const App = () => {
 
   return (
     <Provider store={store}>
+      <GlobalStyles />
       <Navbar />
-      <section className='container'>
-        <Alert />
-        <Switch>
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/register' component={Register} />
-          <Route exact path='/books' component={SearchBooks} />
-          <PrivateRoute exact path='/dashboard' component={Dashboard} />
-        </Switch>
-      </section>
+      <Alert />
+      <Switch>
+        <Route exact path='/login' component={Login} />
+        <Route exact path='/register' component={Register} />
+        <Route exact path='/books' component={SearchBooks} />
+        <PrivateRoute exact path='/dashboard' component={Dashboard} />
+      </Switch>
     </Provider>
   );
 };

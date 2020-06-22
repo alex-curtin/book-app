@@ -1,7 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { addBook } from '../../../actions/book';
+import { Button } from '../../layout/Button.js';
+import BookWrapper from '../../layout/BookWrapper';
+
+import {
+  setRem,
+  setFlex,
+  setBorder,
+  setColor,
+  setBackground,
+} from '../../layout/styles';
 
 // TODO - deal with google books that have no images
 
@@ -16,7 +27,7 @@ const BookItem = ({
     volumeInfo: {
       title,
       authors,
-      description,
+      description = 'no description available',
       imageLinks: { thumbnail = '' },
     },
   } = book;
@@ -32,42 +43,45 @@ const BookItem = ({
     };
     addBook(bookData, e.target.value);
   };
-  console.log(profile);
 
   return (
-    <article className='book-item'>
+    <BookWrapper className='book-item'>
       <img src={thumbnail} alt={title} />
 
       <div className='book-details'>
-        <strong>{title}</strong>
-        {authors.map((author) => (
-          <p key={author}>{author}</p>
-        ))}
+        <div className='top'>
+          <h6>{title}</h6>
+          <p>by {authors.join(',')}</p>
+        </div>
+
+        <small>{`${description.slice(0, 170).trim()}...`}</small>
 
         {isAuthenticated &&
           (profile !== null ? (
-            <div className='mt-1'>
+            <div className='bottom'>
               Add to list:
-              <button
+              <Button
                 className='btn'
                 value='read'
                 onClick={(e) => handleSubmit(e)}
               >
                 Read
-              </button>
-              <button
+              </Button>
+              <Button
                 className='btn'
                 value='to-read'
                 onClick={(e) => handleSubmit(e)}
               >
                 To-Read
-              </button>
+              </Button>
             </div>
           ) : (
-            <p className='mt-1'>create a profile to add books to your lists</p>
+            <div className='bottom'>
+              create a profile to add books to your lists
+            </div>
           ))}
       </div>
-    </article>
+    </BookWrapper>
   );
 };
 
@@ -81,5 +95,32 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile,
 });
+
+const aBookWrapper = styled.article`
+  ${setFlex({ y: 'flex-start', x: 'flex-start' })};
+  height: 100%;
+  .book-details {
+    background: ${setColor.mainGrey};
+    ${setFlex({ x: 'space-between', y: 'flex-start' })};
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+  .top,
+  .bottom {
+    padding: ${setRem(10)};
+    width: 100%;
+  }
+
+  .bottom {
+    text-align: right;
+    justify-self: flex-end;
+    background: ${setColor.primaryMuted};
+  }
+
+  small {
+    padding: ${setRem(10)};
+  }
+`;
 
 export default connect(mapStateToProps, { addBook })(BookItem);

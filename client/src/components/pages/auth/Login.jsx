@@ -3,6 +3,8 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../../actions/auth';
+import { Form } from '../../layout/Form';
+import { Button } from '../../layout/Button';
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -28,31 +30,27 @@ const Login = ({ login, isAuthenticated }) => {
   return (
     <>
       <h1>Sign In</h1>
-      <form className='form' onSubmit={(e) => handleSubmit(e)}>
-        <div className='mb'>
-          <input
-            type='email'
-            placeholder='Email address'
-            name='email'
-            value={email}
-            onChange={(e) => handleChange(e)}
-            required
-          />
-        </div>
+      <Form className='form' onSubmit={(e) => handleSubmit(e)}>
+        <input
+          type='email'
+          placeholder='Email address'
+          name='email'
+          value={email}
+          onChange={(e) => handleChange(e)}
+          required
+        />
 
-        <div className='mb'>
-          <input
-            type='password'
-            placeholder='Password'
-            name='password'
-            value={password}
-            onChange={(e) => handleChange(e)}
-            required
-          />
-        </div>
+        <input
+          type='password'
+          placeholder='Password'
+          name='password'
+          value={password}
+          onChange={(e) => handleChange(e)}
+          required
+        />
 
-        <input type='submit' className='btn' value='Login' />
-      </form>
+        <Button as="input" type='submit' className='btn' value='Login' />
+      </Form>
       <p className='m'>
         <Link to='/register'>...or Create an Account</Link>
       </p>

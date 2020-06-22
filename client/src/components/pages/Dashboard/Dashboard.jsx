@@ -2,9 +2,16 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 import { getCurrentProfile } from '../../../actions/profile';
+import { selectBooks } from '../../../selectors/profile';
 import Loading from '../../layout/Loading';
-import Book from './Book';
+import BookList from './BookList';
+import Header from './Header';
+import Container from '../../layout/Container';
+
+import styled from 'styled-components';
+import { setRem, setFlex } from '../../layout/styles';
 
 const Dashboard = ({
   getCurrentProfile,
@@ -14,66 +21,36 @@ const Dashboard = ({
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
+  console.log(profile);
+
+  const readBooks = () =>
+    profile.books.filter((book) => book.status === 'read');
+  const toReadBooks = () =>
+    profile.books.filter((book) => book.status === 'to-read');
 
   return loading && profile === null ? (
     <Loading />
   ) : (
-    <>
-      <h1>Dashboard</h1>
-      <p>Welcome {user && user.name}</p>
+    <DashboardWrapper>
+      <Header user={user} profile={profile} />
+      <Container>
+        {profile && profile.books.length > 0 ? (
+          <>
+            <h3>Your Books</h3>
+            <div className='books'>
+              {readBooks().length > 0 && <BookList title='read' />}
 
-      {profile !== null ? (
-        <div>
-          <p>
-            <i className='fas fa-home'></i> {profile.location}
-          </p>
-
-          <p>
-            <i className='fas fa-user-circle'></i> {profile.bio}
-          </p>
-
-          {profile.books.length > 0 ? (
-            <>
-              <h3>Your Books</h3>
-
-              {profile.books.filter((book) => book.status === 'read').length >
-                0 && (
-                <>
-                  <h4>Read</h4>
-                  {profile.books
-                    .filter((book) => book.status === 'read')
-                    .map((book) => (
-                      <Book book={book.book} />
-                    ))}
-                </>
-              )}
-
-              {profile.books.filter((book) => book.status === 'to-read')
-                .length > 0 && (
-                <>
-                  <h4>To Read</h4>
-                  {profile.books
-                    .filter((book) => book.status === 'to-read')
-                    .map((book) => (
-                      <Book book={book.book} />
-                    ))}
-                </>
-              )}
-            </>
-          ) : (
-            <>
-              <p>You haven't added any books yet</p>
-              <Link to='/books'>Search books</Link>
-            </>
-          )}
-        </div>
-      ) : (
-        <div>
-          <p>You have not set up your profile.</p>
-          <Link to='#!'>Create profile</Link>
-        </div>
-      )}
-    </>
+              {toReadBooks().length > 0 && <BookList title='to-read' />}
+            </div>
+          </>
+        ) : (
+          <>
+            <p>You haven't added any books yet</p>
+            <Link to='/books'>Search books</Link>
+          </>
+        )}
+      </Container>
+    </DashboardWrapper>
   );
 };
 
@@ -86,6 +63,15 @@ Dashboard.propTypes = {
 const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile,
+  test: selectBooks(state),
 });
+
+const DashboardWrapper = styled.section`
+  .books {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: ${setRem()};
+  }
+`;
 
 export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);
