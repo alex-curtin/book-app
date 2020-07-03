@@ -33,7 +33,7 @@ const Book = ({ item, addBook }) => {
 
   return (
     <BookWrapper className='book-item'>
-      <Modal isOpen={modalOpen} toggleModal={toggleModal} />
+      <Modal isOpen={modalOpen} toggleModal={toggleModal} type='deleteBook' />
       <img src={imgUrl} alt={title} />
       <div className='book-details'>
         <div className='top'>

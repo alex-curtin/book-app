@@ -2,13 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import { setColor, setFlex, setBorder, setRem } from './styles';
 import { Button } from './Button';
+import modalContent from '../../constants/modal';
 
-const Modal = ({ isOpen, toggleModal }) => {
+const Modal = ({ isOpen, toggleModal, type }) => {
+  const content = modalContent[type];
+
   return (
     <ModalWrapper isOpen={isOpen}>
       <article>
-        delete this book?
-        <Button onClick={toggleModal}>cancel</Button>
+        <div>{content.message}</div>
+
+        <div>
+          {content.buttons.map((button) => (
+            <Button type={button.type}>{button.text}</Button>
+          ))}
+          <Button onClick={toggleModal}>cancel</Button>
+        </div>
       </article>
     </ModalWrapper>
   );
@@ -31,6 +40,10 @@ const ModalWrapper = styled.div`
     ${setFlex({ x: 'space-between' })};
     flex-direction: column;
     padding: ${setRem()};
+  }
+
+  button {
+    margin-left: ${setRem(8)};
   }
 `;
 
