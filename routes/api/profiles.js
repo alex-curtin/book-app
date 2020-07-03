@@ -164,4 +164,28 @@ router.put('/books', auth, async (req, res) => {
   }
 });
 
+router.delete('/books/:book_id', auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    // Get remove index
+    const removeIndex = profile.books
+      .map((item) => item.id)
+      .indexOf(req.params.book_id);
+
+    profile.books.splice(removeIndex, 1);
+
+    await profile.save();
+
+    const updatedProfile = await Profile.findOne({ user: req.user.id })
+      .populate('user', ['name'])
+      .populate('books.book');
+
+    res.json(updatedProfile);
+  } catch (e) {
+    console.error(e.message);
+    res.status(500).send('Server error');
+  }
+});
+
 module.exports = router;

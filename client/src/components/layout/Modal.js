@@ -4,7 +4,7 @@ import { setColor, setFlex, setBorder, setRem } from './styles';
 import { Button } from './Button';
 import modalContent from '../../constants/modal';
 
-const Modal = ({ isOpen, toggleModal, type }) => {
+const Modal = ({ isOpen, toggleModal, type, actions }) => {
   const content = modalContent[type];
 
   return (
@@ -14,7 +14,13 @@ const Modal = ({ isOpen, toggleModal, type }) => {
 
         <div>
           {content.buttons.map((button) => (
-            <Button type={button.type}>{button.text}</Button>
+            <Button
+              type={button.type}
+              onClick={actions[button.action]}
+              key={button.id}
+            >
+              {button.text}
+            </Button>
           ))}
           <Button onClick={toggleModal}>cancel</Button>
         </div>

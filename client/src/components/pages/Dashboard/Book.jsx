@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addBook } from '../../../actions/book';
+import { deleteBook } from '../../../actions/profile';
 import BookWrapper from '../../layout/BookWrapper';
 import Modal from '../../layout/Modal';
 import { Button } from '../../layout/Button';
 import { FaTimes, FaTrashAlt } from 'react-icons/fa';
 import { GrTrash } from 'react-icons/gr';
 
-const Book = ({ item, addBook }) => {
+const Book = ({ item, addBook, deleteBook }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const {
@@ -31,9 +32,18 @@ const Book = ({ item, addBook }) => {
     setModalOpen(!modalOpen);
   };
 
+  const removeBook = () => {
+    deleteBook(item._id);
+  };
+
   return (
     <BookWrapper className='book-item'>
-      <Modal isOpen={modalOpen} toggleModal={toggleModal} type='deleteBook' />
+      <Modal
+        isOpen={modalOpen}
+        toggleModal={toggleModal}
+        type='deleteBook'
+        actions={{ primary: removeBook }}
+      />
       <img src={imgUrl} alt={title} />
       <div className='book-details'>
         <div className='top'>
@@ -60,4 +70,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { addBook })(Book);
+export default connect(mapStateToProps, { addBook, deleteBook })(Book);
