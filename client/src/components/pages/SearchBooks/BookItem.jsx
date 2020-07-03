@@ -3,16 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { addBook } from '../../../actions/book';
+import { selectBookIds } from '../../../selectors/profile';
 import { Button } from '../../layout/Button.js';
 import BookWrapper from '../../layout/BookWrapper';
-
-import {
-  setRem,
-  setFlex,
-  setBorder,
-  setColor,
-  setBackground,
-} from '../../layout/styles';
 
 // TODO - deal with google books that have no images
 
@@ -21,6 +14,7 @@ const BookItem = ({
   auth: { isAuthenticated },
   profile: { profile },
   addBook,
+  bookIds,
 }) => {
   const {
     id,
@@ -31,6 +25,8 @@ const BookItem = ({
       imageLinks: { thumbnail = '' },
     },
   } = book;
+
+  const inCollection = bookIds.includes(id);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,8 +50,8 @@ const BookItem = ({
           <p>by {authors.join(',')}</p>
         </div>
 
-        <small>{`${description.slice(0, 170).trim()}...`}</small>
-
+        <small>{`${description.slice(0, 150).trim()}...`}</small>
+        {/* {inCollection && <p>this book is in your collection</p>} */}
         {isAuthenticated &&
           (profile !== null ? (
             <div className='bottom'>
@@ -94,33 +90,7 @@ BookItem.propTypes = {
 const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile,
+  bookIds: selectBookIds(state),
 });
-
-const aBookWrapper = styled.article`
-  ${setFlex({ y: 'flex-start', x: 'flex-start' })};
-  height: 100%;
-  .book-details {
-    background: ${setColor.mainGrey};
-    ${setFlex({ x: 'space-between', y: 'flex-start' })};
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-  }
-  .top,
-  .bottom {
-    padding: ${setRem(10)};
-    width: 100%;
-  }
-
-  .bottom {
-    text-align: right;
-    justify-self: flex-end;
-    background: ${setColor.primaryMuted};
-  }
-
-  small {
-    padding: ${setRem(10)};
-  }
-`;
 
 export default connect(mapStateToProps, { addBook })(BookItem);

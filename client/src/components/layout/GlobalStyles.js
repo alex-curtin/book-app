@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     ${setFont.main};
     color: ${setColor.mainBlack};
-    background: ${setColor.mainWhite};
+    background: ${setColor.lightGrey};
     font-size:100%;
   }
 

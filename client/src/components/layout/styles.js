@@ -3,6 +3,7 @@ import { css } from 'styled-components';
 export const setColor = {
   primary: '#FFD166',
   primaryMuted: '#FFE7AD',
+  primaryDark: '#F5AB00',
   secondary: '#118AB2',
   success: '#06D6A0',
   danger: '#E94F37',
@@ -18,7 +19,7 @@ export const setFont = {
 };
 
 export const setShadow = {
-  light: 'box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);',
+  light: 'box-shadow: 3px 7px 17px -6px rgba(0,0,0,0.89);',
   dark: 'box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.75);',
   darkest: 'box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);',
 };

@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addBook } from '../../../actions/book';
 import BookWrapper from '../../layout/BookWrapper';
+import Modal from '../../layout/Modal';
 import { Button } from '../../layout/Button';
+import { FaTimes, FaTrashAlt } from 'react-icons/fa';
+import { GrTrash } from 'react-icons/gr';
 
 const Book = ({ item, addBook }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
   const {
     title,
     authors = [],
@@ -21,15 +26,22 @@ const Book = ({ item, addBook }) => {
     e.preventDefault();
     addBook(item.book, setButton());
   };
-  console.log(item);
+
+  const toggleModal = () => {
+    setModalOpen(!modalOpen);
+  };
 
   return (
     <BookWrapper className='book-item'>
+      <Modal isOpen={modalOpen} toggleModal={toggleModal} />
       <img src={imgUrl} alt={title} />
       <div className='book-details'>
         <div className='top'>
-          <h6>{title}</h6>
-          <p>by {authors.join(', ')}</p>
+          <div>
+            <h6>{title}</h6>
+            <p>by {authors.join(', ')}</p>
+          </div>
+          <FaTrashAlt className='delete' onClick={toggleModal} />
         </div>
         <small>{`${description.slice(0, 150).trim()}...`}</small>
         <div className='bottom'>

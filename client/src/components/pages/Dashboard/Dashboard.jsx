@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { getCurrentProfile } from '../../../actions/profile';
-import { selectBooks } from '../../../selectors/profile';
 import Loading from '../../layout/Loading';
 import BookList from './BookList';
 import Header from './Header';
@@ -21,7 +20,6 @@ const Dashboard = ({
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
-  console.log(profile);
 
   const readBooks = () =>
     profile.books.filter((book) => book.status === 'read');
@@ -63,7 +61,6 @@ Dashboard.propTypes = {
 const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile,
-  test: selectBooks(state),
 });
 
 const DashboardWrapper = styled.section`

@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { getCurrentProfile } from '../../../actions/profile';
 import SearchBar from './SearchBar';
 import BookItem from './BookItem';
 import { setRem, setColor, setFlex } from '../../layout/styles';
 
-const SearchBooks = ({ book: { books, loading } }) => {
+const SearchBooks = ({ book: { books, loading }, getCurrentProfile }) => {
+  useEffect(() => {
+    getCurrentProfile();
+  }, [getCurrentProfile]);
+
   return (
     <SearchBooksWrapper>
       <h2 className='text-center'>Search for books</h2>
@@ -41,4 +46,4 @@ const SearchBooksWrapper = styled.section`
   }
 `;
 
-export default connect(mapStateToProps)(SearchBooks);
+export default connect(mapStateToProps, { getCurrentProfile })(SearchBooks);

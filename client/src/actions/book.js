@@ -12,7 +12,7 @@ export const getBooks = (query) => async (dispatch) => {
     const res = await extAxios.get(
       `https://www.googleapis.com/books/v1/volumes?q=${query}`
     );
-    console.log(res.data);
+
     dispatch({
       type: GET_BOOKS,
       payload: res.data.items,
