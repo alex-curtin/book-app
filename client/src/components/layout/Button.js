@@ -21,19 +21,19 @@ const themes = {
 export const Button = styled.button`
   padding: ${setRem(5)};
   ${setBorder()};
-  border-color: ${(props) => themes[props.type].main};
-  background: ${(props) => themes[props.type].main};
+  border-color: ${(props) => themes[props.theme].main};
+  background: ${(props) => themes[props.theme].main};
   display: inline-block;
   cursor: pointer;
   border-radius: ${setRem(3)};
   ${setTransition()};
 
   &:hover {
-    background: ${(props) => themes[props.type].dark};
-    border-color: ${(props) => themes[props.type].dark};
+    background: ${(props) => themes[props.theme].dark};
+    border-color: ${(props) => themes[props.theme].dark};
   }
 `;
 
 Button.defaultProps = {
-  type: 'primary',
+  theme: 'primary',
 };

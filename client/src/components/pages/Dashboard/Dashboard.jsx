@@ -34,7 +34,7 @@ const Dashboard = ({
       <Container>
         {profile && profile.books.length > 0 ? (
           <>
-            <h3>Your Books</h3>
+            <h3>Your Lists</h3>
             <div className='books'>
               {readBooks().length > 0 && <BookList title='read' />}
 

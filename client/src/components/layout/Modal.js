@@ -15,7 +15,7 @@ const Modal = ({ isOpen, toggleModal, type, actions }) => {
         <div>
           {content.buttons.map((button) => (
             <Button
-              type={button.type}
+              theme={button.theme}
               onClick={actions[button.action]}
               key={button.id}
             >

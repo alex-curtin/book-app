@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { GrLocation } from 'react-icons/gr';
+import ProfileForm from './ProfileForm';
+import { Button } from '../../layout/Button';
 import { setRem, setColor } from '../../layout/styles';
 
 const Header = ({ profile, user }) => {
+  const [showForm, setShowForm] = useState(false);
+
+  const toggleForm = () => {
+    setShowForm(!showForm);
+  };
+
   return (
     <HeaderWrapper>
       <h1>Dashboard</h1>
@@ -12,19 +21,20 @@ const Header = ({ profile, user }) => {
       {profile !== null ? (
         <>
           <p>
-            <i className='fas fa-home'></i> {profile.location}
+            <GrLocation /> {profile.location}
           </p>
 
           <p>
             <i className='fas fa-user-circle'></i> {profile.bio}
           </p>
+          <Button onClick={toggleForm}>edit profile</Button>
         </>
       ) : (
         <div>
-          <p>You have not set up your profile.</p>
-          <Link to='#!'>Create profile</Link>
+          <Button onClick={toggleForm}>Create profile</Button>
         </div>
       )}
+      {showForm && <ProfileForm toggleForm={toggleForm} />}
     </HeaderWrapper>
   );
 };

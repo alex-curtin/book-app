@@ -46,8 +46,10 @@ const BookItem = ({
 
       <div className='book-details'>
         <div className='top'>
-          <h6>{title}</h6>
-          <p>by {authors.join(',')}</p>
+          <div>
+            <h6>{title}</h6>
+            <p>by {authors.join(',')}</p>
+          </div>
         </div>
 
         <small>{`${description.slice(0, 150).trim()}...`}</small>

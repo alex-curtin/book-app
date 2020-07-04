@@ -53,7 +53,9 @@ router.post('/', auth, async (req, res) => {
         { user: req.user.id },
         { $set: profileFields },
         { new: true }
-      );
+      )
+        .populate('user', ['name'])
+        .populate('books.book');
       return res.json(profile);
     }
 

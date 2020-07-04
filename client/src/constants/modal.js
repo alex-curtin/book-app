@@ -5,7 +5,7 @@ export default {
     buttons: [
       {
         text: 'delete',
-        type: 'danger',
+        theme: 'danger',
         action: 'primary',
       },
     ],

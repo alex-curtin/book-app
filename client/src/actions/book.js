@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { setAlert } from './alert';
 import { GET_BOOKS, BOOK_ERROR, ADD_BOOK, UPDATE_PROFILE } from './types';
+import { BASE_URL } from './constants';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 const extAxios = axios.create();
@@ -35,11 +36,7 @@ export const addBook = (bookData, status) => async (dispatch) => {
 
   try {
     // Add book to database
-    const res = await axios.post(
-      'http://localhost:5000/api/books',
-      bookData,
-      config
-    );
+    const res = await axios.post(`${BASE_URL}/api/books`, bookData, config);
 
     dispatch({
       type: ADD_BOOK,
@@ -53,7 +50,7 @@ export const addBook = (bookData, status) => async (dispatch) => {
 
     // Add book to user profile books list
     const resp = await axios.put(
-      'http://localhost:5000/api/profiles/books',
+      `${BASE_URL}/api/profiles/books`,
       book,
       config
     );
