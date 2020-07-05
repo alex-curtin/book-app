@@ -33,7 +33,7 @@ const Dashboard = ({
     <Loading />
   ) : (
     <DashboardWrapper>
-      <Header user={user} profile={profile} />
+      {/* <Header user={user} profile={profile} /> */}
       <Container>
         {profile && profile.books.length > 0 ? (
           <>

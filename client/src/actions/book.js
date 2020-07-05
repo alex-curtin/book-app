@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { setAlert } from './alert';
 import {
+  SET_QUERY,
   GET_BOOKS,
+  GET_MORE_BOOKS,
   BOOK_ERROR,
   ADD_BOOK,
   UPDATE_PROFILE,
@@ -13,15 +15,41 @@ const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 const extAxios = axios.create();
 extAxios.defaults.headers.common = {};
 
+// Set current query
+export const setCurrentQuery = (query) => (dispatch) => {
+  dispatch({
+    type: SET_QUERY,
+    payload: query,
+  });
+};
+
 // Get books from Google Books API
 export const getBooks = (query) => async (dispatch) => {
   try {
     const res = await extAxios.get(
-      `https://www.googleapis.com/books/v1/volumes?q=${query}`
+      `https://www.googleapis.com/books/v1/volumes?orderBy=relevance&maxResults=20&q=${query}&startIndex=0`
+    );
+    console.log(res.data);
+    dispatch({
+      type: GET_BOOKS,
+      payload: res.data.items,
+    });
+  } catch (e) {
+    dispatch({
+      type: BOOK_ERROR,
+      payload: { e },
+    });
+  }
+};
+
+export const getMoreBooks = (query, index) => async (dispatch) => {
+  try {
+    const res = await extAxios.get(
+      `https://www.googleapis.com/books/v1/volumes?orderBy=relevance&maxResults=20&q=${query}&startIndex=${index}`
     );
 
     dispatch({
-      type: GET_BOOKS,
+      type: GET_MORE_BOOKS,
       payload: res.data.items,
     });
   } catch (e) {

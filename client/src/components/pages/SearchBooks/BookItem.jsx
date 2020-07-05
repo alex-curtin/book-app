@@ -22,9 +22,11 @@ const BookItem = ({
       title,
       authors,
       description = 'no description available',
-      imageLinks: { thumbnail = '' },
+      imageLinks = {},
     },
   } = book;
+
+  const { thumbnail = '' } = imageLinks;
 
   const inCollection = bookIds.includes(id);
 
@@ -48,7 +50,7 @@ const BookItem = ({
         <div className='top'>
           <div>
             <h6>{title}</h6>
-            <p>by {authors.join(',')}</p>
+            {authors && <p>by {authors.join(', ').slice(0, 100)}</p>}
           </div>
         </div>
 

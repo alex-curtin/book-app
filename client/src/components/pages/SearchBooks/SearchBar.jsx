@@ -5,15 +5,7 @@ import styled from 'styled-components';
 import { setRem, setColor, setBorder } from '../../layout/styles';
 import { getBooks } from '../../../actions/book';
 
-const SearchBar = ({ getBooks }) => {
-  const [query, setQuery] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    getBooks(query);
-    setQuery('');
-  };
-
+const SearchBar = ({ query, handleSubmit, setQuery }) => {
   return (
     <SearchBarWrapper className='search-bar' onSubmit={(e) => handleSubmit(e)}>
       <input

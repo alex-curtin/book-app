@@ -1,36 +1,55 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { getCurrentProfile } from '../../../actions/profile';
 import SearchBar from './SearchBar';
 import BookItem from './BookItem';
-import { setRem, setColor, setFlex } from '../../layout/styles';
+import { setRem } from '../../layout/styles';
+import { getBooks, getMoreBooks, setCurrentQuery } from '../../../actions/book';
 
-const SearchBooks = ({ book: { books, loading }, getCurrentProfile }) => {
+const SearchBooks = ({
+  book: { books, loading, currentQuery },
+  getCurrentProfile,
+  getBooks,
+  getMoreBooks,
+  setCurrentQuery,
+}) => {
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
 
+  const [query, setQuery] = useState('');
+  const [index, setIndex] = useState(0);
+
+  const loadBooks = (e) => {
+    e.preventDefault();
+    setCurrentQuery(query);
+    getBooks(query);
+    setIndex(0);
+    setQuery('');
+  };
+
+  const loadMoreBooks = async (e) => {
+    e.preventDefault();
+    getMoreBooks(currentQuery, index + 20);
+    setIndex(index + 20);
+  };
+
   return (
     <SearchBooksWrapper>
       <h2>Search for books</h2>
-      <SearchBar />
+      <SearchBar handleSubmit={loadBooks} setQuery={setQuery} query={query} />
       <div className='books'>
         {books.length > 0 &&
-          books.map((book) => <BookItem key={book.id} book={book} />)}
+          books.map((book) => <BookItem key={book.etag} book={book} />)}
       </div>
+      {books.length > 0 && (
+        <button onClick={loadMoreBooks}>load more books</button>
+      )}
     </SearchBooksWrapper>
   );
 };
-
-SearchBooks.propTypes = {
-  book: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  book: state.book,
-});
 
 const SearchBooksWrapper = styled.section`
   min-height: 100vh;
@@ -46,4 +65,17 @@ const SearchBooksWrapper = styled.section`
   }
 `;
 
-export default connect(mapStateToProps, { getCurrentProfile })(SearchBooks);
+SearchBooks.propTypes = {
+  book: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  book: state.book,
+});
+
+export default connect(mapStateToProps, {
+  getCurrentProfile,
+  getBooks,
+  getMoreBooks,
+  setCurrentQuery,
+})(SearchBooks);
