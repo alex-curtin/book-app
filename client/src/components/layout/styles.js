@@ -4,14 +4,17 @@ export const setColor = {
   primary: '#FFD166',
   primaryMuted: '#FFE7AD',
   primaryDark: '#F5AB00',
-  secondary: '#118AB2',
+  secondary: '#32BDEC',
+  secondaryDark: '#118AB2',
   success: '#06D6A0',
   danger: '#E94F37',
   dangerDark: '#CA2E16',
   mainWhite: '#fff',
+  offWhite: '#FFF9EB',
   mainBlack: '#222',
-  mainGrey: '#ececec',
-  lightGrey: '#f7f7f7',
+  mainGrey: '#C7D1D1',
+  darkGrey: '#586A6A',
+  lightGrey: '#f4f6f6',
 };
 
 export const setFont = {

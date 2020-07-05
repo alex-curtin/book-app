@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GrLocation } from 'react-icons/gr';
-import ProfileForm from './ProfileForm';
+import ProfileForm from './ProfileForm.jsx';
 import { Button } from '../../layout/Button';
 import { setRem, setColor } from '../../layout/styles';
 
@@ -27,7 +27,11 @@ const Header = ({ profile, user }) => {
           <p>
             <i className='fas fa-user-circle'></i> {profile.bio}
           </p>
-          <Button onClick={toggleForm}>edit profile</Button>
+          {!showForm && (
+            <Button onClick={toggleForm} className='edit-button'>
+              edit profile
+            </Button>
+          )}
         </>
       ) : (
         <div>
@@ -40,8 +44,16 @@ const Header = ({ profile, user }) => {
 };
 
 const HeaderWrapper = styled.div`
-  background: ${setColor.mainGrey};
+  background: ${setColor.lightGrey};
   padding: ${setRem(12)} ${setRem(24)};
+  &:hover {
+    .edit-button {
+      display: initial;
+    }
+  }
+  .edit-button {
+    display: none;
+  }
 `;
 
 export default Header;

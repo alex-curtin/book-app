@@ -12,6 +12,10 @@ const themes = {
     main: setColor.primary,
     dark: setColor.primaryDark,
   },
+  secondary: {
+    main: setColor.secondary,
+    dark: setColor.secondaryDark,
+  },
   danger: {
     main: setColor.danger,
     dark: setColor.dangerDark,

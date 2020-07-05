@@ -1,6 +1,12 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_BOOKS, BOOK_ERROR, ADD_BOOK, UPDATE_PROFILE } from './types';
+import {
+  GET_BOOKS,
+  BOOK_ERROR,
+  ADD_BOOK,
+  UPDATE_PROFILE,
+  UPDATE_BOOKLIST,
+} from './types';
 import { BASE_URL } from './constants';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
@@ -48,15 +54,11 @@ export const addBook = (bookData, status) => async (dispatch) => {
       status,
     };
 
-    // Add book to user profile books list
-    const resp = await axios.put(
-      `${BASE_URL}/api/profiles/books`,
-      book,
-      config
-    );
+    // Add book to user book list
+    const resp = await axios.post(`${BASE_URL}/api/book-lists`, book, config);
 
     dispatch({
-      type: UPDATE_PROFILE,
+      type: UPDATE_BOOKLIST,
       payload: resp.data,
     });
 

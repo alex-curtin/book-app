@@ -22,7 +22,9 @@ const Modal = ({ isOpen, toggleModal, type, actions }) => {
               {button.text}
             </Button>
           ))}
-          <Button onClick={toggleModal}>cancel</Button>
+          <Button onClick={toggleModal} theme='secondary'>
+            cancel
+          </Button>
         </div>
       </article>
     </ModalWrapper>

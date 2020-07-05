@@ -14,7 +14,7 @@ const SearchBooks = ({ book: { books, loading }, getCurrentProfile }) => {
 
   return (
     <SearchBooksWrapper>
-      <h2 className='text-center'>Search for books</h2>
+      <h2>Search for books</h2>
       <SearchBar />
       <div className='books'>
         {books.length > 0 &&

@@ -21,7 +21,7 @@ const BookWrapper = styled.article`
     flex-direction: column;
     height: ${setRem(195)};
     width: 100%;
-    background: ${setColor.mainGrey};
+    background: ${setColor.lightGrey};
   }
   img {
     height: ${setRem(195)};

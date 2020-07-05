@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addBook } from '../../../actions/book';
-import { deleteBook } from '../../../actions/profile';
+import { deleteBook } from '../../../actions/bookList';
 import BookWrapper from '../../layout/BookWrapper';
 import Modal from '../../layout/Modal';
 import { Button } from '../../layout/Button';
-import { FaTimes, FaTrashAlt } from 'react-icons/fa';
-import { GrTrash } from 'react-icons/gr';
+import { FaTrashAlt } from 'react-icons/fa';
 
 const Book = ({ item, addBook, deleteBook }) => {
   const [modalOpen, setModalOpen] = useState(false);

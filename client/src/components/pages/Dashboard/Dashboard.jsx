@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { getCurrentProfile } from '../../../actions/profile';
+import { getCurrentBookList } from '../../../actions/bookList';
 import Loading from '../../layout/Loading';
 import BookList from './BookList';
 import Header from './Header';
@@ -14,11 +15,13 @@ import { setRem, setFlex } from '../../layout/styles';
 
 const Dashboard = ({
   getCurrentProfile,
+  getCurrentBookList,
   auth: { user },
   profile: { profile, loading },
 }) => {
   useEffect(() => {
     getCurrentProfile();
+    getCurrentBookList();
   }, [getCurrentProfile]);
 
   const readBooks = () =>
@@ -71,4 +74,7 @@ const DashboardWrapper = styled.section`
   }
 `;
 
-export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);
+export default connect(mapStateToProps, {
+  getCurrentProfile,
+  getCurrentBookList,
+})(Dashboard);

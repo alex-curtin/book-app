@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+import { setRem } from '../../layout/styles';
 import { Form } from '../../layout/Form';
 import { Button } from '../../layout/Button';
 import { createProfile } from '../../../actions/profile';
@@ -27,7 +29,7 @@ const ProfileForm = ({ createProfile, toggleForm, profile }) => {
   };
 
   return (
-    <Form onSubmit={onSubmit}>
+    <FormWrapper onSubmit={onSubmit}>
       <input
         type='text'
         name='location'
@@ -42,10 +44,23 @@ const ProfileForm = ({ createProfile, toggleForm, profile }) => {
         onChange={(e) => onChange(e)}
       />
       <Button>submit</Button>
-      <Button onClick={toggleForm}>cancel</Button>
-    </Form>
+      <Button onClick={toggleForm} theme='secondary'>
+        cancel
+      </Button>
+    </FormWrapper>
   );
 };
+
+const FormWrapper = styled(Form)`
+  margin-top: ${setRem()};
+  textarea {
+    height: 150px;
+  }
+
+  button {
+    margin-right: ${setRem()};
+  }
+`;
 
 const mapStateToProps = (state) => ({
   profile: state.profile,

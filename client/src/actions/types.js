@@ -10,6 +10,10 @@ export const GET_BOOKS = 'GET_BOOKS';
 export const BOOK_ERROR = 'BOOK_ERROR';
 export const ADD_BOOK = 'ADD_BOOK';
 
+export const GET_BOOKLIST = 'GET_BOOKLIST';
+export const UPDATE_BOOKLIST = 'UPDATE_BOOKLIST';
+export const BOOKLIST_ERROR = 'BOOKLIST_ERROR';
+
 export const GET_PROFILE = 'GET_PROFILE';
 export const CREATE_PROFILE = 'CREATE_PROFILE';
 export const UPDATE_PROFILE = 'UPDATE_PROFILE';

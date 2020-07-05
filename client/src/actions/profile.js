@@ -48,7 +48,6 @@ export const createProfile = (formData) => async (dispatch) => {
 };
 
 export const deleteBook = (bookId) => async (dispatch) => {
-  debugger;
   try {
     const res = await axios.delete(`${BASE_URL}/api/profiles/books/${bookId}`);
 
