@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { getCurrentProfile } from '../../../actions/profile';
-import { getCurrentBookList } from '../../../actions/bookList';
+import { getCurrentUserBookLists } from '../../../actions/bookList';
 import Loading from '../../layout/Loading';
 import BookList from './BookList';
 import Header from './Header';
@@ -15,34 +15,28 @@ import { setRem, setFlex } from '../../layout/styles';
 
 const Dashboard = ({
   getCurrentProfile,
-  getCurrentBookList,
+  getCurrentUserBookLists,
   auth: { user },
-  profile: { profile, loading },
+  profile: { profile },
+  bookList: { currentUserLists, loading },
 }) => {
   useEffect(() => {
     getCurrentProfile();
-    getCurrentBookList();
+    getCurrentUserBookLists();
   }, [getCurrentProfile]);
 
-  const readBooks = () =>
-    profile.books.filter((book) => book.status === 'read');
-  const toReadBooks = () =>
-    profile.books.filter((book) => book.status === 'to-read');
-
-  return loading && profile === null ? (
+  return loading ? (
     <Loading />
   ) : (
     <DashboardWrapper>
       {/* <Header user={user} profile={profile} /> */}
       <Container>
-        {profile && profile.books.length > 0 ? (
+        {currentUserLists && currentUserLists.length > 0 ? (
           <>
-            <h3>Your Lists</h3>
-            <div className='books'>
-              {readBooks().length > 0 && <BookList title='read' />}
-
-              {toReadBooks().length > 0 && <BookList title='to-read' />}
-            </div>
+            <h3>Your Books</h3>
+            {currentUserLists.map((list) => (
+              <BookList key={list._id} list={list} />
+            ))}
           </>
         ) : (
           <>
@@ -55,6 +49,14 @@ const Dashboard = ({
   );
 };
 
+const DashboardWrapper = styled.section`
+  .books {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: ${setRem()};
+  }
+`;
+
 Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
@@ -64,17 +66,10 @@ Dashboard.propTypes = {
 const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile,
+  bookList: state.bookList,
 });
-
-const DashboardWrapper = styled.section`
-  .books {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: ${setRem()};
-  }
-`;
 
 export default connect(mapStateToProps, {
   getCurrentProfile,
-  getCurrentBookList,
+  getCurrentUserBookLists,
 })(Dashboard);

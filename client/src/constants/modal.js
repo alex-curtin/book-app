@@ -6,7 +6,12 @@ export default {
       {
         text: 'delete',
         theme: 'danger',
-        action: 'primary',
+        action: 'delete',
+      },
+      {
+        text: 'cancel',
+        theme: 'secondary',
+        action: 'cancel',
       },
     ],
   },

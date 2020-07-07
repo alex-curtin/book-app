@@ -4,29 +4,12 @@ import { setColor, setFlex, setBorder, setRem } from './styles';
 import { Button } from './Button';
 import modalContent from '../../constants/modal';
 
-const Modal = ({ isOpen, toggleModal, type, actions }) => {
+const Modal = ({ children, isOpen, type, actions }) => {
   const content = modalContent[type];
 
   return (
     <ModalWrapper isOpen={isOpen}>
-      <article>
-        <div>{content.message}</div>
-
-        <div>
-          {content.buttons.map((button) => (
-            <Button
-              theme={button.theme}
-              onClick={actions[button.action]}
-              key={button.id}
-            >
-              {button.text}
-            </Button>
-          ))}
-          <Button onClick={toggleModal} theme='secondary'>
-            cancel
-          </Button>
-        </div>
-      </article>
+      <article>{children}</article>
     </ModalWrapper>
   );
 };
@@ -42,8 +25,6 @@ const ModalWrapper = styled.div`
   display: ${(props) => (props.isOpen ? 'flex' : 'none')};
 
   article {
-    width: 50%;
-    height: 50%;
     background: ${setColor.lightGrey};
     ${setFlex({ x: 'space-between' })};
     flex-direction: column;

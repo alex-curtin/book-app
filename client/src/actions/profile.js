@@ -25,7 +25,6 @@ export const getCurrentProfile = () => async (dispatch) => {
 };
 
 export const createProfile = (formData) => async (dispatch) => {
-  debugger;
   try {
     const config = {
       headers: {

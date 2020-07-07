@@ -15,6 +15,7 @@ export const setColor = {
   mainGrey: '#C7D1D1',
   darkGrey: '#586A6A',
   lightGrey: '#f4f6f6',
+  overlayBlack: 'rgba(0, 0, 0, 0.5)',
 };
 
 export const setFont = {

@@ -41,7 +41,7 @@ const Book = ({ item, addBook, deleteBook }) => {
         isOpen={modalOpen}
         toggleModal={toggleModal}
         type='deleteBook'
-        actions={{ primary: removeBook }}
+        actions={{ delete: removeBook, cancel: toggleModal }}
       />
       <img src={imgUrl} alt={title} />
       <div className='book-details'>
