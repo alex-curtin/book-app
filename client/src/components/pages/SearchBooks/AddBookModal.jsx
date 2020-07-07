@@ -30,6 +30,7 @@ const AddBookModal = ({ bookList, handleSubmit, toggleModal, isOpen }) => {
         onChange={(e) => setName(e.target.value)}
         disabled={!!newName}
       >
+        <option value=''> </option>
         {currentUserLists.map(({ name }) => (
           <option value={name} key={name}>
             {name}
