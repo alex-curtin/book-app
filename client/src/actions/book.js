@@ -61,7 +61,7 @@ export const getMoreBooks = (query, index) => async (dispatch) => {
 };
 
 // Add a book
-export const addBook = (bookData, status) => async (dispatch) => {
+export const addBook = (bookData, listName) => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -79,11 +79,14 @@ export const addBook = (bookData, status) => async (dispatch) => {
 
     const book = {
       book: res.data._id,
-      status,
     };
 
     // Add book to user book list
-    const resp = await axios.post(`${BASE_URL}/api/book-lists`, book, config);
+    const resp = await axios.post(
+      `${BASE_URL}/api/book-lists`,
+      { book, listName },
+      config
+    );
 
     dispatch({
       type: UPDATE_BOOKLIST,

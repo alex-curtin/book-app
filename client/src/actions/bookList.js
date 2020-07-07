@@ -2,18 +2,18 @@ import axios from 'axios';
 import { setAlert } from './alert';
 import {
   GET_BOOKS,
-  GET_BOOKLIST,
+  GET_BOOKLISTS,
   BOOKLIST_ERROR,
   UPDATE_BOOKLIST,
 } from './types';
 import { BASE_URL } from './constants';
 
-export const getCurrentBookList = () => async (dispatch) => {
+export const getCurrentUserBookLists = () => async (dispatch) => {
   try {
     const res = await axios.get(`${BASE_URL}/api/book-lists/me`);
 
     dispatch({
-      type: GET_BOOKLIST,
+      type: GET_BOOKLISTS,
       payload: res.data,
     });
   } catch (e) {

@@ -5,8 +5,9 @@ import styled from 'styled-components';
 import { getCurrentProfile } from '../../../actions/profile';
 import SearchBar from './SearchBar';
 import BookItem from './BookItem';
-import { setRem } from '../../layout/styles';
+import { setRem, setColor } from '../../layout/styles';
 import { getBooks, getMoreBooks, setCurrentQuery } from '../../../actions/book';
+import { getCurrentUserBookLists } from '../../../actions/bookList';
 
 const SearchBooks = ({
   book: { books, loading, currentQuery },
@@ -14,9 +15,12 @@ const SearchBooks = ({
   getBooks,
   getMoreBooks,
   setCurrentQuery,
+  bookList: { currentUserLists },
+  getCurrentUserBookLists,
 }) => {
   useEffect(() => {
     getCurrentProfile();
+    getCurrentUserBookLists();
   }, [getCurrentProfile]);
 
   const [query, setQuery] = useState('');
@@ -45,7 +49,9 @@ const SearchBooks = ({
           books.map((book) => <BookItem key={book.etag} book={book} />)}
       </div>
       {books.length > 0 && (
-        <button onClick={loadMoreBooks}>load more books</button>
+        <p className='load-more'>
+          <span onClick={loadMoreBooks}>load more results</span>
+        </p>
       )}
     </SearchBooksWrapper>
   );
@@ -57,11 +63,21 @@ const SearchBooksWrapper = styled.section`
   max-width: ${setRem(1200)};
   margin: 0 auto;
   padding-top: ${setRem()};
+
   .books {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
     grid-column-gap: ${setRem(25)};
     grid-row-gap: ${setRem(10)};
+  }
+
+  .load-more {
+    color: ${setColor.secondaryDark};
+    text-align: center;
+    margin: ${setRem()} 0;
+    span {
+      cursor: pointer;
+    }
   }
 `;
 
@@ -71,6 +87,7 @@ SearchBooks.propTypes = {
 
 const mapStateToProps = (state) => ({
   book: state.book,
+  bookList: state.bookList,
 });
 
 export default connect(mapStateToProps, {
@@ -78,4 +95,5 @@ export default connect(mapStateToProps, {
   getBooks,
   getMoreBooks,
   setCurrentQuery,
+  getCurrentUserBookLists,
 })(SearchBooks);

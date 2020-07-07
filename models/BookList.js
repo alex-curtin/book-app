@@ -5,17 +5,23 @@ const BookListSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
   },
+  name: {
+    type: String,
+    required: true,
+  },
   books: [
     {
       book: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'book',
       },
-      status: {
-        type: String,
+      rating: {
+        type: Number,
+        min: 1,
+        max: 5,
       },
-      favorite: {
-        type: Boolean,
+      review: {
+        type: String,
       },
     },
   ],

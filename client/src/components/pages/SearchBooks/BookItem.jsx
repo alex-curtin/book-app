@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -6,8 +6,7 @@ import { addBook } from '../../../actions/book';
 import { selectBookIds } from '../../../selectors/profile';
 import { Button } from '../../layout/Button.js';
 import BookWrapper from '../../layout/BookWrapper';
-
-// TODO - deal with google books that have no images
+import AddBookModal from './AddBookModal';
 
 const BookItem = ({
   book,
@@ -15,7 +14,10 @@ const BookItem = ({
   profile: { profile },
   addBook,
   bookIds,
+  listNames,
 }) => {
+  const [showModal, setShowModal] = useState(false);
+
   const {
     id,
     volumeInfo: {
@@ -28,10 +30,7 @@ const BookItem = ({
 
   const { thumbnail = '' } = imageLinks;
 
-  const inCollection = bookIds.includes(id);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (listName) => {
     const bookData = {
       title,
       authors,
@@ -39,11 +38,21 @@ const BookItem = ({
       imgUrl: thumbnail,
       googleId: id,
     };
-    addBook(bookData, e.target.value);
+    addBook(bookData, listName);
+  };
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
   };
 
   return (
     <BookWrapper className='book-item'>
+      <AddBookModal
+        listNames={listNames}
+        isOpen={showModal}
+        handleSubmit={handleSubmit}
+        toggleModal={toggleModal}
+      />
       <img src={thumbnail} alt={title} />
 
       <div className='book-details'>
@@ -55,25 +64,11 @@ const BookItem = ({
         </div>
 
         <small>{`${description.slice(0, 150).trim()}...`}</small>
-        {/* {inCollection && <p>this book is in your collection</p>} */}
+
         {isAuthenticated &&
           (profile !== null ? (
             <div className='bottom'>
-              Add to list:
-              <Button
-                className='btn'
-                value='read'
-                onClick={(e) => handleSubmit(e)}
-              >
-                Read
-              </Button>
-              <Button
-                className='btn'
-                value='to-read'
-                onClick={(e) => handleSubmit(e)}
-              >
-                To-Read
-              </Button>
+              <Button onClick={toggleModal}>add to list</Button>
             </div>
           ) : (
             <div className='bottom'>

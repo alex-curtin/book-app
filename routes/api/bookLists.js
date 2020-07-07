@@ -10,14 +10,14 @@ const User = require('../../models/User');
 // @access   Private
 router.get('/me', auth, async (req, res) => {
   try {
-    const bookList = await BookList.findOne({ user: req.user.id })
+    const bookLists = await BookList.find({ user: req.user.id })
       .populate('user', ['name'])
       .populate('books.book');
-
-    if (!bookList) {
-      return res.status(400).json({ msg: 'This user has no book list' });
-    }
-    res.json(bookList);
+    console.log(bookLists);
+    // if (!bookLists.length) {
+    //   return res.status(400).json({ msg: 'This user has no book lists' });
+    // }
+    res.json(bookLists);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
@@ -28,13 +28,18 @@ router.get('/me', auth, async (req, res) => {
 // @desc     Create or update user book list
 // @access   Private
 router.post('/', auth, async (req, res) => {
-  const book = req.body;
+  console.log(req.body);
+  const { book, listName } = req.body;
   const fields = {
     user: req.user.id,
+    name: listName,
   };
 
   try {
-    let bookList = await BookList.findOne({ user: req.user.id });
+    let bookList = await BookList.findOne({
+      user: req.user.id,
+      name: listName,
+    });
 
     if (bookList) {
       // Update
@@ -51,7 +56,10 @@ router.post('/', auth, async (req, res) => {
       }
       await bookList.save();
 
-      const updatedBookList = await BookList.findOne({ user: req.user.id })
+      const updatedBookList = await BookList.findOne({
+        user: req.user.id,
+        name: listName,
+      })
         .populate('user', ['name'])
         .populate('books.book');
 
