@@ -20,6 +20,10 @@ const themes = {
     main: setColor.danger,
     dark: setColor.dangerDark,
   },
+  success: {
+    main: setColor.success,
+    dark: setColor.success,
+  },
 };
 
 export const Button = styled.button`

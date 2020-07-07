@@ -81,9 +81,14 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
-router.delete('/:book_id', auth, async (req, res) => {
+// Delete book from user booklist
+router.delete('/:list_name/:book_id', auth, async (req, res) => {
+  const listName = req.params.list_name;
   try {
-    const bookList = await BookList.findOne({ user: req.user.id });
+    const bookList = await BookList.findOne({
+      user: req.user.id,
+      name: listName,
+    });
 
     // Get remove index
     const removeIndex = bookList.books
@@ -94,7 +99,10 @@ router.delete('/:book_id', auth, async (req, res) => {
 
     await bookList.save();
 
-    const updatedBookList = await BookList.findOne({ user: req.user.id })
+    const updatedBookList = await BookList.findOne({
+      user: req.user.id,
+      name: listName,
+    })
       .populate('user', ['name'])
       .populate('books.book');
 

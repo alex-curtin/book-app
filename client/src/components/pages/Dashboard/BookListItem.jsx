@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { FaTrashAlt } from 'react-icons/fa';
 import { Button } from '../../layout/Button';
+import Modal from '../../layout/Modal';
+import { deleteBook } from '../../../actions/bookList';
 
 import { setTransition, setColor, setRem, setFlex } from '../../layout/styles';
 
-const BookListItem = ({ book }) => {
+const BookListItem = ({ book, deleteBook, listName }) => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
-    <Wrapper>
-      <img src={book.imgUrl} altt={book.title} />
+    <Wrapper showModal={showModal}>
+      <Modal isOpen={showModal} className='modal'>
+        <p>delete book?</p>
+        <Button theme='danger' onClick={() => deleteBook(book._id, listName)}>
+          delete
+        </Button>
+        <Button theme='secondary' onClick={() => setShowModal(false)}>
+          cancel
+        </Button>
+      </Modal>
+
+      <img src={book.imgUrl} alt={book.title} />
       <div className='overlay'>
-        <FaTrashAlt className='delete' />
+        <FaTrashAlt className='delete' onClick={() => setShowModal(true)} />
         <Button theme='secondary'>view details</Button>
       </div>
     </Wrapper>
@@ -23,7 +38,7 @@ const Wrapper = styled.div`
   margin-right: ${setRem()};
   &:hover {
     .overlay {
-      opacity: 1;
+      visibility: ${(props) => (props.showModal ? 'hidden' : 'visible')};
     }
   }
   .overlay {
@@ -34,8 +49,7 @@ const Wrapper = styled.div`
     height: 100%;
     ${setFlex({ x: 'space-between', y: 'flex-end' })};
     flex-direction: column;
-    opacity: 0;
-    ${setTransition};
+    visibility: hidden;
     background: ${setColor.overlayBlack};
     padding: ${setRem(8)};
   }
@@ -49,4 +63,8 @@ const Wrapper = styled.div`
   }
 `;
 
-export default BookListItem;
+const mapStateToProps = (state) => ({
+  bookList: state.bookList,
+});
+
+export default connect(mapStateToProps, { deleteBook })(BookListItem);

@@ -22,6 +22,7 @@ export default function (state = initialState, action) {
         currentUserLists: state.currentUserLists.map((list) =>
           list.name === payload.name ? payload : list
         ),
+        loading: false,
       };
     default:
       return state;

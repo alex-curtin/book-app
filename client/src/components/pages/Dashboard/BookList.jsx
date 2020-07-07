@@ -10,7 +10,7 @@ const BookList = ({ list }) => {
     <ListWrapper>
       <h4>{list.name}</h4>
       {list.books.map(({ book }) => (
-        <BookListItem book={book} key={book._id} />
+        <BookListItem book={book} key={book._id} listName={list.name} />
       ))}
     </ListWrapper>
   );

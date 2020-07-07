@@ -24,10 +24,12 @@ export const getCurrentUserBookLists = () => async (dispatch) => {
   }
 };
 
-export const deleteBook = (bookId) => async (dispatch) => {
+export const deleteBook = (bookId, listName) => async (dispatch) => {
   try {
-    const res = await axios.delete(`${BASE_URL}/api/book-lists/${bookId}`);
-
+    const res = await axios.delete(
+      `${BASE_URL}/api/book-lists/${listName}/${bookId}`
+    );
+    console.log(res.data);
     dispatch({
       type: UPDATE_BOOKLIST,
       payload: res.data,
