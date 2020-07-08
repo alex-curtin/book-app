@@ -13,7 +13,7 @@ router.get('/me', auth, async (req, res) => {
     const bookLists = await BookList.find({ user: req.user.id })
       .populate('user', ['name'])
       .populate('books.book');
-    console.log(bookLists);
+
     // if (!bookLists.length) {
     //   return res.status(400).json({ msg: 'This user has no book lists' });
     // }
@@ -28,7 +28,6 @@ router.get('/me', auth, async (req, res) => {
 // @desc     Create or update user book list
 // @access   Private
 router.post('/', auth, async (req, res) => {
-  console.log(req.body);
   const { book, listName } = req.body;
   const fields = {
     user: req.user.id,
@@ -43,7 +42,7 @@ router.post('/', auth, async (req, res) => {
 
     if (bookList) {
       // Update
-      console.log(book);
+
       //check if book is already on list
       const replaceIndex = bookList.books
         .map((el) => el.book.toString())
@@ -56,14 +55,13 @@ router.post('/', auth, async (req, res) => {
       }
       await bookList.save();
 
-      const updatedBookList = await BookList.findOne({
+      const bookLists = await BookList.find({
         user: req.user.id,
-        name: listName,
       })
         .populate('user', ['name'])
         .populate('books.book');
 
-      return res.json(updatedBookList);
+      return res.json(bookLists);
     }
 
     // Create
@@ -74,14 +72,38 @@ router.post('/', auth, async (req, res) => {
     bookList.books.push(book);
 
     await bookList.save();
-    res.json(bookList);
+
+    const bookLists = await BookList.find({
+      user: req.user.id,
+    })
+      .populate('user', ['name'])
+      .populate('books.book');
+
+    res.json(bookLists);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
   }
 });
 
-// Delete book from user booklist
+// @route    DELETE api/book-lists/:list_name
+// @desc     Delete user book list
+// @access   Private
+router.delete('/:list_name', auth, async (req, res) => {
+  const listName = req.params.list_name;
+  try {
+    await BookList.findOneAndDelete({ user: req.user.id, name: listName });
+
+    res.json(listName);
+  } catch (e) {
+    console.error(e.message);
+    res.status(500).send('Server error');
+  }
+});
+
+// @route    DELETE api/book-lists/:list_name/:book_id
+// @desc     Delete book from user book list
+// @access   Private
 router.delete('/:list_name/:book_id', auth, async (req, res) => {
   const listName = req.params.list_name;
   try {
@@ -92,21 +114,20 @@ router.delete('/:list_name/:book_id', auth, async (req, res) => {
 
     // Get remove index
     const removeIndex = bookList.books
-      .map((item) => item._id)
+      .map((item) => item.book._id)
       .indexOf(req.params.book_id);
 
     bookList.books.splice(removeIndex, 1);
 
     await bookList.save();
 
-    const updatedBookList = await BookList.findOne({
+    const bookLists = await BookList.find({
       user: req.user.id,
-      name: listName,
     })
       .populate('user', ['name'])
       .populate('books.book');
 
-    res.json(updatedBookList);
+    res.json(bookLists);
   } catch (e) {
     console.error(e.message);
     res.status(500).send('Server error');

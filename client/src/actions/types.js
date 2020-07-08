@@ -14,6 +14,7 @@ export const ADD_BOOK = 'ADD_BOOK';
 
 export const GET_BOOKLISTS = 'GET_BOOKLIST';
 export const UPDATE_BOOKLIST = 'UPDATE_BOOKLIST';
+export const DELETE_BOOKLIST = 'DELETE_BOOKLIST';
 export const BOOKLIST_ERROR = 'BOOKLIST_ERROR';
 
 export const GET_PROFILE = 'GET_PROFILE';

@@ -1,4 +1,8 @@
-import { GET_BOOKLISTS, UPDATE_BOOKLIST } from '../actions/types';
+import {
+  GET_BOOKLISTS,
+  UPDATE_BOOKLIST,
+  DELETE_BOOKLIST,
+} from '../actions/types';
 
 const initialState = {
   currentUserLists: [],
@@ -11,16 +15,17 @@ export default function (state = initialState, action) {
 
   switch (type) {
     case GET_BOOKLISTS:
+    case UPDATE_BOOKLIST:
       return {
         ...state,
         currentUserLists: payload,
         loading: false,
       };
-    case UPDATE_BOOKLIST:
+    case DELETE_BOOKLIST:
       return {
         ...state,
-        currentUserLists: state.currentUserLists.map((list) =>
-          list.name === payload.name ? payload : list
+        currentUserLists: state.currentUserLists.filter(
+          (list) => list.name !== payload
         ),
         loading: false,
       };

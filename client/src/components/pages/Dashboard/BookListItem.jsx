@@ -6,7 +6,13 @@ import { Button } from '../../layout/Button';
 import Modal from '../../layout/Modal';
 import { deleteBook } from '../../../actions/bookList';
 
-import { setTransition, setColor, setRem, setFlex } from '../../layout/styles';
+import {
+  setTransition,
+  setColor,
+  setRem,
+  setFlex,
+  setShadow,
+} from '../../layout/styles';
 
 const BookListItem = ({ book, deleteBook, listName }) => {
   const [showModal, setShowModal] = useState(false);
@@ -36,6 +42,7 @@ const Wrapper = styled.div`
   position: relative;
   display: inline-block;
   margin-right: ${setRem()};
+  ${setShadow.light};
   &:hover {
     .overlay {
       visibility: ${(props) => (props.showModal ? 'hidden' : 'visible')};

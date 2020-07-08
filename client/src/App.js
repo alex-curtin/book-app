@@ -7,6 +7,7 @@ import Login from './components/pages/auth/Login';
 import Register from './components/pages/auth/Register';
 import SearchBooks from './components/pages/SearchBooks';
 import Dashboard from './components/pages/Dashboard';
+import SingleBook from './components/pages/SingleBook';
 import Alert from './components/layout/Alert';
 
 import PrivateRoute from './components/routing/PrivateRoute';
