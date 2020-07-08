@@ -5,6 +5,9 @@ const BookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  subtitle: {
+    type: String,
+  },
   authors: [
     {
       type: String,
@@ -18,6 +21,15 @@ const BookSchema = new mongoose.Schema({
     default: Date.now,
   },
   description: {
+    type: String,
+  },
+  publisher: {
+    type: String,
+  },
+  publishedDate: {
+    type: String,
+  },
+  category: {
     type: String,
   },
   googleId: {

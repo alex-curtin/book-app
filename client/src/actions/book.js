@@ -4,6 +4,7 @@ import {
   SET_QUERY,
   GET_BOOKS,
   GET_MORE_BOOKS,
+  GET_BOOK,
   BOOK_ERROR,
   ADD_BOOK,
   UPDATE_PROFILE,
@@ -51,6 +52,25 @@ export const getMoreBooks = (query, index) => async (dispatch) => {
     dispatch({
       type: GET_MORE_BOOKS,
       payload: res.data.items,
+    });
+  } catch (e) {
+    dispatch({
+      type: BOOK_ERROR,
+      payload: { e },
+    });
+  }
+};
+
+// Get single book from Google Books API
+export const getBook = (bookId) => async (dispatch) => {
+  try {
+    const res = await extAxios.get(
+      `https://www.googleapis.com/books/v1/volumes/${bookId}`
+    );
+
+    dispatch({
+      type: GET_BOOK,
+      payload: res.data,
     });
   } catch (e) {
     dispatch({

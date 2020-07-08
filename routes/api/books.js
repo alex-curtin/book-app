@@ -30,7 +30,17 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-
+    const {
+      title,
+      subtitle,
+      authors,
+      imgUrl,
+      googleId,
+      description,
+      publisher,
+      publishedDate,
+      category,
+    } = req.body;
     try {
       let book = await Book.findOne({ googleId: req.body.googleId });
 
@@ -39,11 +49,15 @@ router.post(
       }
 
       const newBook = new Book({
-        title: req.body.title,
-        authors: req.body.authors,
-        imgUrl: req.body.imgUrl,
-        googleId: req.body.googleId,
-        description: req.body.description,
+        title,
+        subtitle,
+        authors,
+        imgUrl,
+        googleId,
+        description,
+        publisher,
+        publishedDate,
+        category,
       });
 
       book = await newBook.save();

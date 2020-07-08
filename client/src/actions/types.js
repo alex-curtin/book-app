@@ -9,6 +9,7 @@ export const LOGOUT = 'LOGOUT';
 export const SET_QUERY = 'SET_QUERY';
 export const GET_BOOKS = 'GET_BOOKS';
 export const GET_MORE_BOOKS = 'GET_MORE_BOOKS';
+export const GET_BOOK = 'GET_BOOK';
 export const BOOK_ERROR = 'BOOK_ERROR';
 export const ADD_BOOK = 'ADD_BOOK';
 

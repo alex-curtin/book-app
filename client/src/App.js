@@ -36,6 +36,11 @@ const App = () => {
         <Route exact path='/register' component={Register} />
         <Route exact path='/books' component={SearchBooks} />
         <PrivateRoute exact path='/dashboard' component={Dashboard} />
+        <PrivateRoute
+          exact
+          path='/:list_name/:book_id'
+          component={SingleBook}
+        />
       </Switch>
     </Provider>
   );

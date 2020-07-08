@@ -1,5 +1,6 @@
 import {
   GET_BOOKS,
+  GET_BOOK,
   BOOK_ERROR,
   ADD_BOOK,
   SET_QUERY,
@@ -9,6 +10,7 @@ import {
 const initialState = {
   currentQuery: null,
   books: [],
+  book: null,
   loading: true,
   error: [],
 };
@@ -21,6 +23,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         currentQuery: payload,
+      };
+    case GET_BOOK:
+      return {
+        ...state,
+        book: payload,
+        loading: false,
       };
     case GET_BOOKS:
       return {

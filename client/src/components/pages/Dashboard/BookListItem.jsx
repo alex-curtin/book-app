@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { FaTrashAlt } from 'react-icons/fa';
@@ -14,7 +15,7 @@ import {
   setShadow,
 } from '../../layout/styles';
 
-const BookListItem = ({ book, deleteBook, listName }) => {
+const BookListItem = ({ book, deleteBook, listName, bookId }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -32,7 +33,9 @@ const BookListItem = ({ book, deleteBook, listName }) => {
       <img src={book.imgUrl} alt={book.title} />
       <div className='overlay'>
         <FaTrashAlt className='delete' onClick={() => setShowModal(true)} />
-        <Button theme='secondary'>view details</Button>
+        <Link to={`/${listName}/${bookId}`}>
+          <Button theme='secondary'>view details</Button>
+        </Link>
       </div>
     </Wrapper>
   );
@@ -64,7 +67,7 @@ const Wrapper = styled.div`
     color: ${setColor.dangerDark};
     cursor: pointer;
   }
-  button {
+  a {
     align-self: center;
     margin: auto 0;
   }

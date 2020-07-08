@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { addBook } from '../../../actions/book';
-import { selectBookIds } from '../../../selectors/profile';
 import { Button } from '../../layout/Button.js';
 import BookWrapper from '../../layout/BookWrapper';
 import AddBookModal from './AddBookModal';
@@ -13,7 +12,6 @@ const BookItem = ({
   auth: { isAuthenticated },
   profile: { profile },
   addBook,
-  bookIds,
   listNames,
 }) => {
   const [showModal, setShowModal] = useState(false);
@@ -22,9 +20,13 @@ const BookItem = ({
     id,
     volumeInfo: {
       title,
+      subtitle = '',
       authors,
       description = 'no description available',
       imageLinks = {},
+      publisher = '',
+      publishedDate = '',
+      mainCategory = '',
     },
   } = book;
 
@@ -33,10 +35,14 @@ const BookItem = ({
   const handleSubmit = async (listName) => {
     const bookData = {
       title,
+      subtitle,
       authors,
       description,
       imgUrl: thumbnail,
       googleId: id,
+      publisher,
+      publishedDate,
+      category: mainCategory,
     };
     addBook(bookData, listName);
   };
@@ -89,7 +95,6 @@ BookItem.propTypes = {
 const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile,
-  bookIds: selectBookIds(state),
 });
 
 export default connect(mapStateToProps, { addBook })(BookItem);

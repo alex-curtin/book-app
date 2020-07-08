@@ -38,8 +38,13 @@ const BookList = ({ list, deleteBookList }) => {
       </h4>
       {!hideList && (
         <div className='list-container'>
-          {list.books.map(({ book }) => (
-            <BookListItem book={book} key={book._id} listName={list.name} />
+          {list.books.map(({ book, _id }) => (
+            <BookListItem
+              book={book}
+              key={book._id}
+              listName={list.name}
+              bookId={_id}
+            />
           ))}
         </div>
       )}
@@ -51,7 +56,6 @@ const ListWrapper = styled.div`
   margin-bottom: ${setRem()};
   min-height: ${(props) => (props.hideList ? `0px` : `${setRem(200)}`)};
   position: relative;
-  overflow: hidden;
   &:hover {
     .delete-list {
       visibility: visible;
