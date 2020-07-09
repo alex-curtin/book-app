@@ -29,11 +29,28 @@ const ModalWrapper = styled.div`
     background: ${setColor.lightGrey};
     ${setFlex({ x: 'space-between' })};
     flex-direction: column;
-    padding: ${setRem()};
+    padding: ${setRem(12)};
+    border-radius: ${setRem(3)};
+    text-align: center;
   }
 
   button {
+    display: inline;
     margin-left: ${setRem(8)};
+  }
+
+  button:nth-of-type(1) {
+    margin-left: 0;
+  }
+
+  .buttons {
+    ${setFlex({ x: 'space-around' })};
+  }
+
+  input,
+  select {
+    margin-bottom: ${setRem()};
+    width: 80%;
   }
 `;
 

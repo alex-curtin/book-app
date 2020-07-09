@@ -22,7 +22,7 @@ const themes = {
   },
   success: {
     main: setColor.success,
-    dark: setColor.success,
+    dark: setColor.successDark,
   },
 };
 
@@ -45,3 +45,8 @@ export const Button = styled.button`
 Button.defaultProps = {
   theme: 'primary',
 };
+
+export const SmallButton = styled(Button)`
+  font-size: ${setRem(12)};
+  padding: ${setRem(4)};
+`;

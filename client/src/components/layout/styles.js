@@ -7,6 +7,7 @@ export const setColor = {
   secondary: '#32BDEC',
   secondaryDark: '#118AB2',
   success: '#06D6A0',
+  successDark: '#05B384',
   danger: '#E94F37',
   dangerDark: '#CA2E16',
   mainWhite: '#fff',

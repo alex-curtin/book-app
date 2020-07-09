@@ -16,12 +16,14 @@ const BookList = ({ list, deleteBookList }) => {
     <ListWrapper hideList={hideList}>
       <Modal isOpen={showModal}>
         <h4>delete list?</h4>
-        <Button theme='danger' onClick={() => deleteBookList(list.name)}>
-          delete
-        </Button>
-        <Button theme='secondary' onClick={() => setShowModal(false)}>
-          cancel
-        </Button>
+        <div className='buttons'>
+          <Button theme='danger' onClick={() => deleteBookList(list.name)}>
+            delete
+          </Button>
+          <Button theme='secondary' onClick={() => setShowModal(false)}>
+            cancel
+          </Button>
+        </div>
       </Modal>
 
       <h4>

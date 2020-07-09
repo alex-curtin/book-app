@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Modal from '../../layout/Modal';
-import { Button } from '../../layout/Button';
+import { Button, SmallButton } from '../../layout/Button';
 
 const AddBookModal = ({ bookList, handleSubmit, toggleModal, isOpen }) => {
   const [name, setName] = useState('');
@@ -38,17 +38,19 @@ const AddBookModal = ({ bookList, handleSubmit, toggleModal, isOpen }) => {
       </select>
 
       <h6>create new list</h6>
-      <div>
-        <input
-          type='text'
-          name='new-list'
-          value={newName}
-          onChange={(e) => setNewName(e.target.value)}
-        />
-      </div>
+      <input
+        type='text'
+        name='new-list'
+        value={newName}
+        onChange={(e) => setNewName(e.target.value)}
+      />
 
-      <Button onClick={onSubmit}>Add Book</Button>
-      <Button onClick={cancel}>Cancel</Button>
+      <div className='buttons'>
+        <Button theme='success' onClick={onSubmit} disabled={!name && !newName}>
+          Add
+        </Button>
+        <Button onClick={cancel}>Cancel</Button>
+      </div>
     </Modal>
   );
 };

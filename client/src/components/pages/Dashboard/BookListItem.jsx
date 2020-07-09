@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { FaTrashAlt } from 'react-icons/fa';
-import { Button } from '../../layout/Button';
+import { Button, SmallButton } from '../../layout/Button';
 import Modal from '../../layout/Modal';
 import { deleteBook } from '../../../actions/bookList';
 
@@ -21,13 +21,18 @@ const BookListItem = ({ book, deleteBook, listName, bookId }) => {
   return (
     <Wrapper showModal={showModal}>
       <Modal isOpen={showModal} className='modal'>
-        <p>delete book?</p>
-        <Button theme='danger' onClick={() => deleteBook(book._id, listName)}>
-          delete
-        </Button>
-        <Button theme='secondary' onClick={() => setShowModal(false)}>
-          cancel
-        </Button>
+        <h6>delete book?</h6>
+        <div className='buttons'>
+          <SmallButton
+            theme='danger'
+            onClick={() => deleteBook(book._id, listName)}
+          >
+            delete
+          </SmallButton>
+          <SmallButton theme='secondary' onClick={() => setShowModal(false)}>
+            cancel
+          </SmallButton>
+        </div>
       </Modal>
 
       <img src={book.imgUrl} alt={book.title} />
@@ -70,6 +75,9 @@ const Wrapper = styled.div`
   a {
     align-self: center;
     margin: auto 0;
+  }
+  h6 {
+    margin-bottom: ${setRem(8)};
   }
 `;
 
