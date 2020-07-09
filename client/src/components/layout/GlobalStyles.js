@@ -22,13 +22,12 @@ const GlobalStyles = createGlobalStyle`
 
   h2 {
     font-size: 2em;
-    margin-bottom: 0.75em;
+    margin-bottom: 0.5rem;
   }
 
   h3 {
     font-size: 1.5em;
-    line-height: 1;
-    margin-bottom: 1em;
+    margin-bottom: 0.5rem;
   }
 
   h4 {

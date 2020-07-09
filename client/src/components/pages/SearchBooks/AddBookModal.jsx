@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { getBookListNames } from '../../../selectors/bookList';
 import Modal from '../../layout/Modal';
 import { Button } from '../../layout/Button';
 
@@ -56,7 +55,6 @@ const AddBookModal = ({ bookList, handleSubmit, toggleModal, isOpen }) => {
 
 const mapStateToProps = (state) => ({
   bookList: state.bookList,
-  listNames: getBookListNames(state),
 });
 
 export default connect(mapStateToProps)(AddBookModal);
