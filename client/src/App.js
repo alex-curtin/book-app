@@ -8,7 +8,6 @@ import Register from './components/pages/auth/Register';
 import SearchBooks from './components/pages/SearchBooks';
 import Dashboard from './components/pages/Dashboard';
 import SingleBook from './components/pages/SingleBook';
-import Alert from './components/layout/Alert';
 
 import PrivateRoute from './components/routing/PrivateRoute';
 
@@ -30,7 +29,6 @@ const App = () => {
     <Provider store={store}>
       <GlobalStyles />
       <Navbar />
-      <Alert />
       <Switch>
         <Route exact path='/login' component={Login} />
         <Route exact path='/register' component={Register} />

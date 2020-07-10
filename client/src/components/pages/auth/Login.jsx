@@ -3,8 +3,10 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../../actions/auth';
-import { Form } from '../../layout/Form';
+import { AuthPage } from '../../layout/AuthPage';
 import { Button } from '../../layout/Button';
+import Alert from '../../layout/Alert';
+import validateEmail from '../../../utils/validateEmail';
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -28,9 +30,9 @@ const Login = ({ login, isAuthenticated }) => {
   }
 
   return (
-    <>
-      <h1>Sign In</h1>
-      <Form className='form' onSubmit={(e) => handleSubmit(e)}>
+    <AuthPage>
+      <h2>Login</h2>
+      <form className='form' onSubmit={(e) => handleSubmit(e)}>
         <input
           type='email'
           placeholder='Email address'
@@ -49,12 +51,17 @@ const Login = ({ login, isAuthenticated }) => {
           required
         />
 
-        <Button as="input" type='submit' className='btn' value='Login' />
-      </Form>
-      <p className='m'>
-        <Link to='/register'>...or Create an Account</Link>
-      </p>
-    </>
+        <Button
+          as='input'
+          type='submit'
+          className='btn'
+          value='Login'
+          disabled={password.length < 6 || !validateEmail(email)}
+        />
+      </form>
+      <Alert />
+      <Link to='/register'>create account</Link>
+    </AuthPage>
   );
 };
 

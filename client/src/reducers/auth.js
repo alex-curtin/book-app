@@ -37,7 +37,7 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case AUTH_ERROR:
-      return state;
+      return { ...state, loading: false };
 
     case LOGIN_FAIL:
     case REGISTER_FAIL:
