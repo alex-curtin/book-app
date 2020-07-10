@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { addBook } from '../../../actions/book';
 import { Button } from '../../layout/Button.js';
 import BookWrapper from '../../layout/BookWrapper';
 import AddBookModal from './AddBookModal';
 
-const BookItem = ({
-  book,
-  auth: { isAuthenticated },
-  profile: { profile },
-  addBook,
-  listNames,
-}) => {
+const BookItem = ({ book, auth: { isAuthenticated }, addBook }) => {
   const [showModal, setShowModal] = useState(false);
 
   const {
@@ -54,7 +47,6 @@ const BookItem = ({
   return (
     <BookWrapper className='book-item'>
       <AddBookModal
-        listNames={listNames}
         isOpen={showModal}
         handleSubmit={handleSubmit}
         toggleModal={toggleModal}
@@ -71,16 +63,11 @@ const BookItem = ({
 
         <small>{`${description.slice(0, 150).trim()}...`}</small>
 
-        {isAuthenticated &&
-          (profile !== null ? (
-            <div className='bottom'>
-              <Button onClick={toggleModal}>add to list</Button>
-            </div>
-          ) : (
-            <div className='bottom'>
-              create a profile to add books to your lists
-            </div>
-          ))}
+        {isAuthenticated && (
+          <div className='bottom'>
+            <Button onClick={toggleModal}>add to list</Button>
+          </div>
+        )}
       </div>
     </BookWrapper>
   );
@@ -89,12 +76,11 @@ const BookItem = ({
 BookItem.propTypes = {
   auth: PropTypes.object.isRequired,
   addBook: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
+  book: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  profile: state.profile,
 });
 
 export default connect(mapStateToProps, { addBook })(BookItem);

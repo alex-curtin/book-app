@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { addBook } from '../../../actions/book';
@@ -89,6 +90,12 @@ const ItemWrapper = styled.div`
     ${setTransition()};
   }
 `;
+
+RecomendedItem.propTypes = {
+  book: PropTypes.object.isRequired,
+  addBook: PropTypes.func.isRequired,
+  bookList: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   bookList: state.bookList,

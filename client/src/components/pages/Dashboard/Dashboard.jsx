@@ -2,34 +2,27 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
-import { getCurrentProfile } from '../../../actions/profile';
-import { getCurrentUserBookLists } from '../../../actions/bookList';
 import Loading from '../../layout/Loading';
 import BookList from './BookList';
-import Header from './Header';
 import Container from '../../layout/Container';
-
-import styled from 'styled-components';
-import { setRem, setFlex } from '../../layout/styles';
+import { getCurrentUserBookLists } from '../../../actions/bookList';
+import { setRem, setColor } from '../../layout/styles';
 
 const Dashboard = ({
-  getCurrentProfile,
   getCurrentUserBookLists,
   auth: { user },
-  profile: { profile },
   bookList: { currentUserLists, loading },
 }) => {
   useEffect(() => {
-    getCurrentProfile();
     getCurrentUserBookLists();
-  }, [getCurrentProfile]);
+  }, []);
 
   return loading ? (
     <Loading />
   ) : (
     <DashboardWrapper>
-      {/* <Header user={user} profile={profile} /> */}
       <Container>
         {currentUserLists && currentUserLists.length > 0 ? (
           <>
@@ -55,21 +48,22 @@ const DashboardWrapper = styled.section`
     grid-template-columns: 1fr 1fr;
     grid-column-gap: ${setRem()};
   }
+  a {
+    color: ${setColor.secondaryDark};
+  }
 `;
 
 Dashboard.propTypes = {
-  getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired,
+  bookList: PropTypes.object.isRequired,
+  getCurrentUserBookLists: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  profile: state.profile,
   bookList: state.bookList,
 });
 
 export default connect(mapStateToProps, {
-  getCurrentProfile,
   getCurrentUserBookLists,
 })(Dashboard);

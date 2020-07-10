@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Modal from '../../layout/Modal';
 import { Button, SmallButton } from '../../layout/Button';
@@ -21,21 +22,24 @@ const AddBookModal = ({ bookList, handleSubmit, toggleModal, isOpen }) => {
 
   return (
     <Modal isOpen={isOpen}>
-      <h6>choose a list</h6>
-
-      <select
-        name='lists'
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        disabled={!!newName}
-      >
-        <option value=''> </option>
-        {currentUserLists.map(({ name }) => (
-          <option value={name} key={name}>
-            {name}
-          </option>
-        ))}
-      </select>
+      {currentUserLists.length > 0 && (
+        <>
+          <h6>choose a list</h6>
+          <select
+            name='lists'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            disabled={!!newName}
+          >
+            <option value=''> </option>
+            {currentUserLists.map(({ name }) => (
+              <option value={name} key={name}>
+                {name}
+              </option>
+            ))}
+          </select>
+        </>
+      )}
 
       <h6>create new list</h6>
       <input
@@ -53,6 +57,13 @@ const AddBookModal = ({ bookList, handleSubmit, toggleModal, isOpen }) => {
       </div>
     </Modal>
   );
+};
+
+AddBookModal.propTypes = {
+  bookList: PropTypes.object.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({

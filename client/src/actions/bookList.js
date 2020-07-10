@@ -58,3 +58,30 @@ export const deleteBookList = (listName) => async (dispatch) => {
     });
   }
 };
+
+export const switchBookList = (listName, newListName, bookId) => async (
+  dispatch
+) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  try {
+    const res = await axios.put(
+      `${BASE_URL}/api/book-lists/${listName}/${bookId}`,
+      { listName: newListName },
+      config
+    );
+
+    dispatch({
+      type: UPDATE_BOOKLIST,
+      payload: res.data,
+    });
+  } catch (e) {
+    dispatch({
+      type: BOOKLIST_ERROR,
+      payload: { e },
+    });
+  }
+};

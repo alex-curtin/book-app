@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { getCurrentProfile } from '../../../actions/profile';
 import SearchBar from './SearchBar';
 import BookItem from './BookItem';
 import { setRem, setColor } from '../../layout/styles';
@@ -10,18 +9,15 @@ import { getBooks, getMoreBooks, setCurrentQuery } from '../../../actions/book';
 import { getCurrentUserBookLists } from '../../../actions/bookList';
 
 const SearchBooks = ({
-  book: { books, loading, currentQuery },
-  getCurrentProfile,
+  book: { books, currentQuery },
   getBooks,
   getMoreBooks,
   setCurrentQuery,
-  bookList: { currentUserLists },
   getCurrentUserBookLists,
 }) => {
   useEffect(() => {
-    getCurrentProfile();
     getCurrentUserBookLists();
-  }, [getCurrentProfile]);
+  }, []);
 
   const [query, setQuery] = useState('');
   const [index, setIndex] = useState(0);
@@ -83,15 +79,17 @@ const SearchBooksWrapper = styled.section`
 
 SearchBooks.propTypes = {
   book: PropTypes.object.isRequired,
+  getBooks: PropTypes.func.isRequired,
+  getMoreBooks: PropTypes.func.isRequired,
+  setCurrentQuery: PropTypes.func.isRequired,
+  getCurrentUserBookLists: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   book: state.book,
-  bookList: state.bookList,
 });
 
 export default connect(mapStateToProps, {
-  getCurrentProfile,
   getBooks,
   getMoreBooks,
   setCurrentQuery,

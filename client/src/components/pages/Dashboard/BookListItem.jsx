@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
@@ -6,14 +7,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { Button, SmallButton } from '../../layout/Button';
 import Modal from '../../layout/Modal';
 import { deleteBook } from '../../../actions/bookList';
-
-import {
-  setTransition,
-  setColor,
-  setRem,
-  setFlex,
-  setShadow,
-} from '../../layout/styles';
+import { setColor, setRem, setFlex, setShadow } from '../../layout/styles';
 
 const BookListItem = ({ book, deleteBook, listName, bookId }) => {
   const [showModal, setShowModal] = useState(false);
@@ -80,6 +74,13 @@ const Wrapper = styled.div`
     margin-bottom: ${setRem(8)};
   }
 `;
+
+BookListItem.propTypes = {
+  book: PropTypes.object.isRequired,
+  deleteBook: PropTypes.func.isRequired,
+  listName: PropTypes.string.isRequired,
+  bookId: PropTypes.string.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   bookList: state.bookList,

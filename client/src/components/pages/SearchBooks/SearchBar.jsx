@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { setRem, setColor, setBorder } from '../../layout/styles';
-import { getBooks } from '../../../actions/book';
+import { setRem, setBorder } from '../../layout/styles';
 
 const SearchBar = ({ query, handleSubmit, setQuery }) => {
   return (
@@ -23,10 +21,6 @@ const SearchBar = ({ query, handleSubmit, setQuery }) => {
   );
 };
 
-SearchBar.propTypes = {
-  getBooks: PropTypes.func.isRequired,
-};
-
 const SearchBarWrapper = styled.form`
   margin-bottom: ${setRem(20)};
   input {
@@ -42,4 +36,10 @@ const SearchBarWrapper = styled.form`
   }
 `;
 
-export default connect(null, { getBooks })(SearchBar);
+SearchBar.propTypes = {
+  query: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  setQuery: PropTypes.func.isRequired,
+};
+
+export default SearchBar;

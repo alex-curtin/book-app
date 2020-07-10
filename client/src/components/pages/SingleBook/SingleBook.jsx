@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { setRem, setFlex, setColor, setBorder } from '../../layout/styles';
-import { getBook } from '../../../actions/book';
+import { setRem, setColor } from '../../layout/styles';
 import { getCurrentUserBookLists } from '../../../actions/bookList';
 import Recommended from './Recommended';
+import SwitchList from './SwitchList';
 
-const SingleBook = ({ match, bookList, book }) => {
+const SingleBook = ({ match, bookList }) => {
   const { book_id, list_name } = match.params;
   const { currentUserLists } = bookList;
 
   const list = currentUserLists.find((list) => list.name === list_name);
 
   const bookItem = list.books.find((book) => book._id === book_id);
-  console.log(bookItem);
 
   const {
     authors,
@@ -40,6 +40,11 @@ const SingleBook = ({ match, bookList, book }) => {
         <div>
           <img src={imgUrl} />
           <small>on your {list.name} list</small>
+          <SwitchList
+            listName={list.name}
+            lists={currentUserLists}
+            bookId={book_id}
+          />
         </div>
 
         <div className='info'>
@@ -77,6 +82,11 @@ const BookPageWrapper = styled.section`
     color: ${setColor.secondaryDark};
   }
 `;
+
+SingleBook.propTypes = {
+  match: PropTypes.object.isRequired,
+  bookList: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   bookList: state.bookList,

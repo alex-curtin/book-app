@@ -1,4 +1,4 @@
-* {
+/* * {
   box-sizing: border-box;
   margin: 0;
   padding: 0; }
@@ -217,4 +217,4 @@ input[type='password'] {
   display: flex;
   flex-direction: column; }
 
-/*# sourceMappingURL=App.css.map */
+# sourceMappingURL=App.css.map */

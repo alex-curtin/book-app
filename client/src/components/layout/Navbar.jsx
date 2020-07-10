@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { BsBook } from 'react-icons/bs';
+import booksImg from '../../images/books.svg';
 import styled from 'styled-components';
 import { setColor, setFlex, setRem, setLetterSpacing } from './styles';
 

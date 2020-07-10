@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { FaTrashAlt, FaChevronCircleDown } from 'react-icons/fa';
@@ -81,6 +82,11 @@ const ListWrapper = styled.div`
     transform: ${(props) => (props.hideList ? 'scaleY(-1)' : '')};
   }
 `;
+
+BookList.propTypes = {
+  list: PropTypes.object.isRequired,
+  deleteBookList: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   bookList: state.bookList,

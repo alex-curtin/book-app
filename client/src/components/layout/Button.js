@@ -1,11 +1,5 @@
-import styled, { css } from 'styled-components';
-import {
-  setRem,
-  setColor,
-  setBorder,
-  setTransition,
-  setShadow,
-} from './styles';
+import styled from 'styled-components';
+import { setRem, setColor, setBorder, setTransition } from './styles';
 
 const themes = {
   primary: {

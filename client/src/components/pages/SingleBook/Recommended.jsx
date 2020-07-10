@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getBooks } from '../../../actions/book';
 import RecommendedItem from './RecommendedItem';
@@ -6,7 +7,7 @@ import RecommendedItem from './RecommendedItem';
 const Recomended = ({ getBooks, author, book, googleId }) => {
   useEffect(() => {
     getBooks(author);
-  }, []);
+  }, [author]);
 
   return (
     <div>
@@ -18,6 +19,13 @@ const Recomended = ({ getBooks, author, book, googleId }) => {
       })}
     </div>
   );
+};
+
+RecommendedItem.propTypes = {
+  getBooks: PropTypes.func,
+  author: PropTypes.string,
+  book: PropTypes.object.isRequired,
+  googleId: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
