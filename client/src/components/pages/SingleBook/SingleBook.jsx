@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { setRem, setColor } from '../../layout/styles';
+import { setRem, setColor, media } from '../../layout/styles';
 import { getCurrentUserBookLists } from '../../../actions/bookList';
 import Recommended from './Recommended';
 import SwitchList from './SwitchList';
@@ -86,6 +86,16 @@ const BookPageWrapper = styled.section`
       font-weight: bold;
     }
   }
+
+  ${media.phone`
+    .content {
+      flex-direction: column;
+      .info {
+        margin-left: 0;
+        margin-top: ${setRem(8)};
+      }
+    }
+  `}
 `;
 
 SingleBook.propTypes = {

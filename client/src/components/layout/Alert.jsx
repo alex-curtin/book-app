@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { removeAlert } from '../../actions/alert';
 import styled from 'styled-components';
-import { setRem, setColor } from './styles';
+import { setRem, setColor, setFlex } from './styles';
 
 const Alert = ({ alerts, removeAlert }) =>
   alerts !== null &&
   alerts.length > 0 &&
   alerts.map((alert) => (
-    <AlertWrapper key={alert.id} className={`alert alert-${alert.alertType}`}>
+    <AlertWrapper key={alert.id} className='alert' type={alert.alertType}>
       {alert.msg}{' '}
       <i onClick={() => removeAlert(alert.id)} className='fas fa-times'></i>
     </AlertWrapper>
@@ -25,9 +25,15 @@ const mapStateToProps = (state) => ({
 });
 
 const AlertWrapper = styled.div`
-  color: ${setColor.success};
+  ${setFlex()};
+  color: ${(props) =>
+    props.type === 'success' ? `${setColor.success}` : `${setColor.danger}`};
   padding: ${setRem(18)};
   text-align: center;
+  i {
+    margin-left: ${setRem(8)};
+    cursor: pointer;
+  }
 `;
 
 export default connect(mapStateToProps, { removeAlert })(Alert);

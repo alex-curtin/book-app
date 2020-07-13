@@ -50,6 +50,7 @@ const Wrapper = styled.div`
   position: relative;
   display: inline-block;
   margin-right: ${setRem()};
+  margin-bottom: ${setRem()};
   max-height: ${setRem(200)};
   ${setShadow.light};
   &:hover {

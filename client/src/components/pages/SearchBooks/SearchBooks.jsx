@@ -66,7 +66,7 @@ const SearchBooks = ({
 const SearchBooksWrapper = styled.section`
   .books {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     grid-column-gap: ${setRem(25)};
     grid-row-gap: ${setRem(10)};
   }
