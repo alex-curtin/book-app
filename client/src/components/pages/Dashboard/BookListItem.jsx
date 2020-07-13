@@ -7,7 +7,13 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { Button, SmallButton } from '../../layout/Button';
 import Modal from '../../layout/Modal';
 import { deleteBook } from '../../../actions/bookList';
-import { setColor, setRem, setFlex, setShadow } from '../../layout/styles';
+import {
+  setColor,
+  setRem,
+  setFlex,
+  setShadow,
+  setTransition,
+} from '../../layout/styles';
 
 const BookListItem = ({ book, deleteBook, listName, bookId }) => {
   const [showModal, setShowModal] = useState(false);
@@ -23,7 +29,7 @@ const BookListItem = ({ book, deleteBook, listName, bookId }) => {
           >
             delete
           </SmallButton>
-          <SmallButton theme='secondary' onClick={() => setShowModal(false)}>
+          <SmallButton theme='neutral' onClick={() => setShowModal(false)}>
             cancel
           </SmallButton>
         </div>
@@ -33,7 +39,7 @@ const BookListItem = ({ book, deleteBook, listName, bookId }) => {
       <div className='overlay'>
         <FaTrashAlt className='delete' onClick={() => setShowModal(true)} />
         <Link to={`/${listName}/${bookId}`}>
-          <Button theme='secondary'>view details</Button>
+          <Button>view details</Button>
         </Link>
       </div>
     </Wrapper>
@@ -44,11 +50,16 @@ const Wrapper = styled.div`
   position: relative;
   display: inline-block;
   margin-right: ${setRem()};
+  max-height: ${setRem(200)};
   ${setShadow.light};
   &:hover {
     .overlay {
       visibility: ${(props) => (props.showModal ? 'hidden' : 'visible')};
+      opacity: ${(props) => (props.showModal ? '0' : '1')};
     }
+  }
+  img {
+    height: ${setRem(200)};
   }
   .overlay {
     position: absolute;
@@ -59,11 +70,13 @@ const Wrapper = styled.div`
     ${setFlex({ x: 'space-between', y: 'flex-end' })};
     flex-direction: column;
     visibility: hidden;
+    opacity: 0;
     background: ${setColor.overlayBlack};
     padding: ${setRem(8)};
+    ${setTransition()};
   }
   .delete {
-    color: ${setColor.dangerDark};
+    color: ${setColor.danger};
     cursor: pointer;
   }
   a {

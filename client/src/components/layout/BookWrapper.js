@@ -12,7 +12,7 @@ const BookWrapper = styled.article`
   position: relative;
   &:hover {
     .delete {
-    color: ${setColor.danger};
+      color: ${setColor.danger};
     }
   }
 
@@ -44,7 +44,6 @@ const BookWrapper = styled.article`
   .bottom {
     text-align: right;
     justify-self: flex-end;
-    /* background: ${setColor.primaryMuted}; */
   }
 
   small {

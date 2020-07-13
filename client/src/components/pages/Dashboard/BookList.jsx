@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { FaTrashAlt, FaChevronCircleDown } from 'react-icons/fa';
-import { setRem, setFlex, setColor } from '../../layout/styles';
+import { setRem, setTransition, setColor } from '../../layout/styles';
 import BookListItem from './BookListItem';
 import Modal from '../../layout/Modal';
 import { Button } from '../../layout/Button';
@@ -21,15 +21,16 @@ const BookList = ({ list, deleteBookList }) => {
           <Button theme='danger' onClick={() => deleteBookList(list.name)}>
             delete
           </Button>
-          <Button theme='secondary' onClick={() => setShowModal(false)}>
+          <Button theme='neutral' onClick={() => setShowModal(false)}>
             cancel
           </Button>
         </div>
       </Modal>
 
-      <h4>
+      <h3>
         {list.name}{' '}
         <FaChevronCircleDown
+          size='1rem'
           onClick={() => setHideList(!hideList)}
           className='chevron'
         />{' '}
@@ -38,7 +39,7 @@ const BookList = ({ list, deleteBookList }) => {
           className='delete-list'
           onClick={() => setShowModal(true)}
         />
-      </h4>
+      </h3>
       {!hideList && (
         <div className='list-container'>
           {list.books.map(({ book, _id }) => (
@@ -57,19 +58,21 @@ const BookList = ({ list, deleteBookList }) => {
 
 const ListWrapper = styled.div`
   margin-bottom: ${setRem()};
-  min-height: ${(props) => (props.hideList ? `0px` : `${setRem(200)}`)};
+  min-height: ${(props) => (props.hideList ? `0px` : `auto`)};
   position: relative;
+  padding-bottom: ${setRem()};
+  border-bottom: 1px solid ${setColor.lightGrey};
   &:hover {
     .delete-list {
       visibility: visible;
     }
   }
-  h4 {
+  h3 {
     text-transform: capitalize;
     display: flex;
     align-items: center;
     .delete-list {
-      color: ${setColor.dangerDark};
+      color: ${setColor.danger};
       cursor: pointer;
       visibility: hidden;
       margin-left: ${setRem(8)};
@@ -79,7 +82,8 @@ const ListWrapper = styled.div`
   .chevron {
     cursor: pointer;
     margin-left: ${setRem(8)};
-    transform: ${(props) => (props.hideList ? 'scaleY(-1)' : '')};
+    transform: ${(props) => (props.hideList ? 'rotate(-180deg)' : '')};
+    ${setTransition({ time: '0.2s' })};
   }
 `;
 

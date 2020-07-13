@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { setRem, setBorder } from '../../layout/styles';
+import { setRem, setShadow, setBorder, setColor } from '../../layout/styles';
 
 const SearchBar = ({ query, handleSubmit, setQuery }) => {
   return (
@@ -22,7 +22,7 @@ const SearchBar = ({ query, handleSubmit, setQuery }) => {
 };
 
 const SearchBarWrapper = styled.form`
-  margin-bottom: ${setRem(20)};
+  margin: ${setRem()} 0;
   input {
     padding: 5px;
     ${setBorder()};
@@ -33,6 +33,7 @@ const SearchBarWrapper = styled.form`
     ${setBorder()};
     border-radius: 0 ${setRem(5)} ${setRem(5)} 0;
     border-left: none;
+    background: ${setColor.primary};
   }
 `;
 

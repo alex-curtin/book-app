@@ -26,7 +26,7 @@ const Dashboard = ({
       <Container>
         {currentUserLists && currentUserLists.length > 0 ? (
           <>
-            <h3>Your Books</h3>
+            <h2>Your Books</h2>
             {currentUserLists.map((list) => (
               <BookList key={list._id} list={list} />
             ))}

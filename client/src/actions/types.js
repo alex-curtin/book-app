@@ -12,6 +12,7 @@ export const GET_MORE_BOOKS = 'GET_MORE_BOOKS';
 export const GET_BOOK = 'GET_BOOK';
 export const BOOK_ERROR = 'BOOK_ERROR';
 export const ADD_BOOK = 'ADD_BOOK';
+export const CLEAR_BOOKS = 'CLEAR_BOOKS';
 
 export const GET_BOOKLISTS = 'GET_BOOKLIST';
 export const UPDATE_BOOKLIST = 'UPDATE_BOOKLIST';

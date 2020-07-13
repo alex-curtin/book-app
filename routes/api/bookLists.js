@@ -143,11 +143,11 @@ router.put('/:list_name/:book_id', auth, async (req, res) => {
 
     // Get remove index
     const removeIndex = bookList.books
-      .map((item) => item.book._id)
+      .map((item) => item._id)
       .indexOf(req.params.book_id);
 
     const book = bookList.books.splice(removeIndex, 1)[0];
-    console.log(book);
+    console.log(req.body);
     await bookList.save();
 
     let newBookList = await BookList.findOne({

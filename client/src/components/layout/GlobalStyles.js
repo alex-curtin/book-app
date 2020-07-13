@@ -24,10 +24,11 @@ const GlobalStyles = createGlobalStyle`
     font-size: 2em;
     margin-bottom: 0.5rem;
   }
-
+  
   h3 {
     font-size: 1.5em;
     margin-bottom: 0.5rem;
+    color: ${setColor.darkGrey};
   }
 
   h4 {

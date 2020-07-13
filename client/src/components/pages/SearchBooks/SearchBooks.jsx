@@ -4,8 +4,14 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import SearchBar from './SearchBar';
 import BookItem from './BookItem';
+import Container from '../../layout/Container';
 import { setRem, setColor } from '../../layout/styles';
-import { getBooks, getMoreBooks, setCurrentQuery } from '../../../actions/book';
+import {
+  getBooks,
+  getMoreBooks,
+  setCurrentQuery,
+  clearBooks,
+} from '../../../actions/book';
 import { getCurrentUserBookLists } from '../../../actions/bookList';
 
 const SearchBooks = ({
@@ -14,9 +20,11 @@ const SearchBooks = ({
   getMoreBooks,
   setCurrentQuery,
   getCurrentUserBookLists,
+  clearBooks,
 }) => {
   useEffect(() => {
     getCurrentUserBookLists();
+    clearBooks();
   }, []);
 
   const [query, setQuery] = useState('');
@@ -38,28 +46,24 @@ const SearchBooks = ({
 
   return (
     <SearchBooksWrapper>
-      <h2>Search for books</h2>
-      <SearchBar handleSubmit={loadBooks} setQuery={setQuery} query={query} />
-      <div className='books'>
-        {books.length > 0 &&
-          books.map((book) => <BookItem key={book.etag} book={book} />)}
-      </div>
-      {books.length > 0 && (
-        <p className='load-more'>
-          <span onClick={loadMoreBooks}>load more results</span>
-        </p>
-      )}
+      <Container>
+        <h2>Search for books</h2>
+        <SearchBar handleSubmit={loadBooks} setQuery={setQuery} query={query} />
+        <div className='books'>
+          {books.length > 0 &&
+            books.map((book) => <BookItem key={book.etag} book={book} />)}
+        </div>
+        {books.length > 0 && (
+          <p className='load-more'>
+            <span onClick={loadMoreBooks}>load more results</span>
+          </p>
+        )}
+      </Container>
     </SearchBooksWrapper>
   );
 };
 
 const SearchBooksWrapper = styled.section`
-  min-height: 100vh;
-  width: 90vw;
-  max-width: ${setRem(1200)};
-  margin: 0 auto;
-  padding-top: ${setRem()};
-
   .books {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
@@ -94,4 +98,5 @@ export default connect(mapStateToProps, {
   getMoreBooks,
   setCurrentQuery,
   getCurrentUserBookLists,
+  clearBooks,
 })(SearchBooks);

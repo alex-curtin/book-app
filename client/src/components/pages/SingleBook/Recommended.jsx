@@ -9,14 +9,16 @@ const Recomended = ({ getBooks, author, book, googleId }) => {
     getBooks(author);
   }, [author]);
 
+  const recommendedBooks = book.books
+    .filter((book) => book.id !== googleId && book.volumeInfo.imageLinks)
+    .slice(0, 10);
+
   return (
     <div>
       <h4>More By This Author</h4>
-      {book.books.slice(0, 10).map((book) => {
-        return book.volumeInfo.imageLinks && book.id !== googleId ? (
-          <RecommendedItem book={book} key={book.id} />
-        ) : null;
-      })}
+      {recommendedBooks.map((book) => (
+        <RecommendedItem book={book} key={book.id} />
+      ))}
     </div>
   );
 };

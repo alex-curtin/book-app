@@ -7,6 +7,7 @@ import { setRem, setColor } from '../../layout/styles';
 import { getCurrentUserBookLists } from '../../../actions/bookList';
 import Recommended from './Recommended';
 import SwitchList from './SwitchList';
+import Container from '../../layout/Container';
 
 const SingleBook = ({ match, bookList }) => {
   const { book_id, list_name } = match.params;
@@ -29,41 +30,39 @@ const SingleBook = ({ match, bookList }) => {
 
   return (
     <BookPageWrapper>
-      <Link to='/dashboard'>back to lists</Link>
-      <h2>
-        {title}
-        {subtitle && <span>: {subtitle}</span>}
-      </h2>
-      <h3>by {authors.join(', ')}</h3>
+      <Container>
+        <Link to='/dashboard'>back to lists</Link>
+        <h2>
+          {title}
+          {subtitle && <span>: {subtitle}</span>}
+        </h2>
+        <h3>by {authors.join(', ')}</h3>
 
-      <div className='content'>
-        <div>
-          <img src={imgUrl} />
-          <small>on your {list.name} list</small>
-          <SwitchList
-            listName={list.name}
-            lists={currentUserLists}
-            bookId={book_id}
-          />
-        </div>
+        <div className='content'>
+          <div>
+            <img src={imgUrl} />
+            <small>on your {list.name} list</small>
+          </div>
 
-        <div className='info'>
-          <p>
-            {publisher}, {publishedDate}
-          </p>
-          <p>{description}</p>
+          <div className='info'>
+            <p>
+              {publisher}, {publishedDate}
+            </p>
+            <p>{description}</p>
+            <SwitchList
+              listName={list.name}
+              lists={currentUserLists}
+              bookId={book_id}
+            />
+          </div>
         </div>
-      </div>
-      <Recommended author={authors[0]} googleId={googleId} />
+        <Recommended author={authors[0]} googleId={googleId} />
+      </Container>
     </BookPageWrapper>
   );
 };
 
 const BookPageWrapper = styled.section`
-  padding-top: ${setRem()};
-  width: 90vw;
-  max-width: ${setRem(1100)};
-  margin: 0 auto;
   h2 {
     margin-top: ${setRem(32)};
   }

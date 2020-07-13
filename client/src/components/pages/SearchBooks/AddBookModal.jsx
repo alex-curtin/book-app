@@ -41,19 +41,21 @@ const AddBookModal = ({ bookList, handleSubmit, toggleModal, isOpen }) => {
         </>
       )}
 
-      <h6>create new list</h6>
       <input
         type='text'
         name='new-list'
         value={newName}
         onChange={(e) => setNewName(e.target.value)}
+        placeholder='new list'
       />
 
       <div className='buttons'>
         <Button theme='success' onClick={onSubmit} disabled={!name && !newName}>
           Add
         </Button>
-        <Button onClick={cancel}>Cancel</Button>
+        <Button onClick={cancel} theme='neutral'>
+          Cancel
+        </Button>
       </div>
     </Modal>
   );

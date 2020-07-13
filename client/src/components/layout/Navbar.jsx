@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { BsBook } from 'react-icons/bs';
 import booksImg from '../../images/books.svg';
 import styled from 'styled-components';
 import { setColor, setFlex, setRem, setLetterSpacing } from './styles';
@@ -13,11 +12,12 @@ const Navbar = ({ logout, auth: { isAuthenticated } }) => {
   const authLinks = (
     <>
       <li>
-        <Link to='/dashboard'>Dashboard</Link>
+        <NavLink activeClass='active' to='/dashboard'>
+          Your Books
+        </NavLink>
       </li>
       <li>
         <a onClick={logout} href='#!'>
-          <i className='fas fa-sign-out'></i>
           Logout
         </a>
       </li>
@@ -27,23 +27,26 @@ const Navbar = ({ logout, auth: { isAuthenticated } }) => {
   const guestLinks = (
     <>
       <li>
-        <Link to='/login'>Log In</Link>
+        <NavLink activeClass='active' to='/login'>
+          Log In
+        </NavLink>
       </li>
     </>
   );
 
   return (
-    <NavWrapper className='navbar bg-dark'>
-      <Link to='/dashboard' className='flex align-center'>
-        {/* <i className='fas fa-book-open fa-2x mr-1'></i>  */}
+    <NavWrapper>
+      <Link to='/dashboard'>
         <h1>
-          <BsBook />
+          <img src={booksImg} alt='' />
           Book App
         </h1>
       </Link>
-      <ul className='nav-links'>
+      <ul>
         <li>
-          <Link to='/books'>Find Books</Link>
+          <NavLink activeClass='active' to='/books'>
+            Find Books
+          </NavLink>
         </li>
         {isAuthenticated ? authLinks : guestLinks}
       </ul>
@@ -64,11 +67,17 @@ const NavWrapper = styled.nav`
   background: ${setColor.primary};
   ${setFlex({ x: 'space-between' })};
   padding: ${setRem(12)} ${setRem(24)};
+  width: 100vw;
   h1 {
-    ${setFlex()};
+    ${setFlex({ x: 'flex-start' })};
   }
   svg {
     margin-right: ${setRem(12)};
+    color: ${setColor.primaryDark};
+  }
+  img {
+    height: ${setRem(50)};
+    margin-right: ${setRem(8)};
   }
   ul {
     ${setFlex()};
@@ -76,6 +85,12 @@ const NavWrapper = styled.nav`
       list-style: none;
       margin-right: ${setRem(18)};
     }
+  }
+  a {
+    padding-bottom: ${setRem(4)};
+  }
+  .active {
+    border-bottom: 4px solid ${setColor.primaryMuted};
   }
 `;
 

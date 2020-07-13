@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { addBook } from '../../../actions/book';
-import { setRem, setFlex, setColor, setTransition } from '../../layout/styles';
+import {
+  setRem,
+  setFlex,
+  setColor,
+  setTransition,
+  setShadow,
+} from '../../layout/styles';
 import AddBookModal from '../SearchBooks/AddBookModal';
 import { Button } from '../../layout/Button';
 
@@ -70,6 +76,8 @@ const ItemWrapper = styled.div`
   margin-right: ${setRem()};
   margin-bottom: ${setRem()};
   position: relative;
+  ${setShadow.light};
+  max-height: ${setRem(200)};
   &:hover {
     .overlay {
       opacity: 1;

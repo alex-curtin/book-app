@@ -9,6 +9,7 @@ import {
   ADD_BOOK,
   UPDATE_PROFILE,
   UPDATE_BOOKLIST,
+  CLEAR_BOOKS,
 } from './types';
 import { BASE_URL } from './constants';
 
@@ -59,6 +60,13 @@ export const getMoreBooks = (query, index) => async (dispatch) => {
       payload: { e },
     });
   }
+};
+
+// Clear book search results
+export const clearBooks = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_BOOKS,
+  });
 };
 
 // Get single book from Google Books API

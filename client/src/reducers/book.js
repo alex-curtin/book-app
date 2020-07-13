@@ -5,6 +5,7 @@ import {
   ADD_BOOK,
   SET_QUERY,
   GET_MORE_BOOKS,
+  CLEAR_BOOKS,
 } from '../actions/types';
 
 const initialState = {
@@ -40,6 +41,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         books: [...state.books, ...payload],
+        loading: false,
+      };
+    case CLEAR_BOOKS:
+      return {
+        ...state,
+        books: [],
         loading: false,
       };
     case ADD_BOOK:
