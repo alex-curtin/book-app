@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { GiHamburgerMenu } from 'react-icons/gi';
 import booksImg from '../../images/books.svg';
 import styled from 'styled-components';
-import { setColor, setFlex, setRem, setLetterSpacing } from './styles';
+import { setColor, setFlex, setRem, media } from './styles';
 
 import { logout } from '../../actions/auth';
 
 const Navbar = ({ logout, auth: { isAuthenticated } }) => {
+  const [navOpen, setNavOpen] = useState(false);
+
   const authLinks = (
     <>
       <li>
@@ -35,13 +38,20 @@ const Navbar = ({ logout, auth: { isAuthenticated } }) => {
   );
 
   return (
-    <NavWrapper>
+    <NavWrapper navOpen={navOpen}>
       <Link to='/dashboard'>
         <h1>
-          <img src={booksImg} alt='' />
-          Book App
+          <img src={booksImg} alt='logo' />
+          {/* books by mikicon from the Noun Project */}
+          <span>Book App</span>
         </h1>
       </Link>
+      <GiHamburgerMenu
+        onClick={() => setNavOpen(!navOpen)}
+        size={setRem(50)}
+        color={setColor.mainBlack}
+        className='burger'
+      />
       <ul>
         <li>
           <NavLink activeClass='active' to='/books'>
@@ -68,6 +78,7 @@ const NavWrapper = styled.nav`
   ${setFlex({ x: 'space-between' })};
   padding: ${setRem(12)} ${setRem(24)};
   width: 100vw;
+  position: relative;
   h1 {
     ${setFlex({ x: 'flex-start' })};
   }
@@ -92,6 +103,43 @@ const NavWrapper = styled.nav`
   .active {
     border-bottom: 4px solid ${setColor.primaryMuted};
   }
+  .burger {
+    display: none;
+  }
+
+  ${media.tablet`
+    .burger {
+      display: block;
+      margin-right: ${setRem(40)};
+      cursor: pointer;
+    }
+
+    ul {
+      display: ${(props) => (props.navOpen ? 'flex' : 'none')};
+      z-index: 50;
+      background: ${setColor.primary};
+      position: absolute;
+      flex-direction: column;
+      align-items: flex-start;
+      right: ${setRem(24)};
+      bottom: 0;
+      transform: translateY(100%);
+    }
+    li {
+      padding: ${setRem()};
+      margin: 0;
+      width: 100%;
+      &:hover {
+        background: ${setColor.primaryMuted};
+      }
+    }
+  `}
+
+  ${media.phone`
+    h1 span {
+      display: none;
+    }
+  `}
 `;
 
 export default connect(mapStateToProps, { logout })(Navbar);

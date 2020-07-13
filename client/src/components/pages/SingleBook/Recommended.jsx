@@ -15,7 +15,7 @@ const Recomended = ({ getBooks, author, book, googleId }) => {
 
   return (
     <div>
-      <h4>More By This Author</h4>
+      <h4>Related Books</h4>
       {recommendedBooks.map((book) => (
         <RecommendedItem book={book} key={book.id} />
       ))}

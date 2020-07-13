@@ -41,12 +41,12 @@ const SingleBook = ({ match, bookList }) => {
         <div className='content'>
           <div>
             <img src={imgUrl} />
-            <small>on your {list.name} list</small>
+            <p>on your {list.name} list</p>
           </div>
 
           <div className='info'>
-            <p>
-              {publisher}, {publishedDate}
+            <p className='publisher'>
+              <span>{publisher}</span> {publishedDate}
             </p>
             <p>{description}</p>
             <SwitchList
@@ -79,6 +79,12 @@ const BookPageWrapper = styled.section`
   }
   a {
     color: ${setColor.secondaryDark};
+  }
+  .publisher {
+    color: ${setColor.darkGrey};
+    span {
+      font-weight: bold;
+    }
   }
 `;
 
