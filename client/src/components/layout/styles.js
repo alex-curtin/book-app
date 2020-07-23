@@ -15,7 +15,7 @@ export const setColor = {
   mainBlack: '#222',
   mainGrey: '#a59f94',
   darkGrey: '#413f3b',
-  lightGrey: '#e3e0db',
+  lightGrey: '#efedea',
   overlayBlack: 'rgba(0, 0, 0, 0.5)',
 };
 

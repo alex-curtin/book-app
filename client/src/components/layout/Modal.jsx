@@ -2,11 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { setColor, setFlex, setBorder, setRem } from './styles';
 import { Button } from './Button';
-import modalContent from '../../constants/modal';
 
-const Modal = ({ children, isOpen, type, actions }) => {
-  const content = modalContent[type];
-
+const Modal = ({ children, isOpen }) => {
   return (
     <ModalWrapper isOpen={isOpen}>
       <article>{children}</article>

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addBook } from '../../../actions/book';
 import { Button } from '../../layout/Button.js';
 import BookWrapper from '../../layout/BookWrapper';
 import AddBookModal from './AddBookModal';
+import noImage from '../../../images/no_image.png';
 
 const BookItem = ({ book, auth: { isAuthenticated }, addBook }) => {
   const [showModal, setShowModal] = useState(false);
@@ -23,7 +25,7 @@ const BookItem = ({ book, auth: { isAuthenticated }, addBook }) => {
     },
   } = book;
 
-  const { thumbnail = '' } = imageLinks;
+  const { thumbnail = noImage } = imageLinks;
 
   const handleSubmit = async (listName) => {
     const bookData = {
@@ -63,9 +65,13 @@ const BookItem = ({ book, auth: { isAuthenticated }, addBook }) => {
 
         <small>{`${description.slice(0, 150).trim()}...`}</small>
 
-        {isAuthenticated && (
+        {isAuthenticated ? (
           <div className='bottom'>
             <Button onClick={toggleModal}>add to list</Button>
+          </div>
+        ) : (
+          <div className='bottom'>
+            <Link to='/login'>login</Link> to add books
           </div>
         )}
       </div>
