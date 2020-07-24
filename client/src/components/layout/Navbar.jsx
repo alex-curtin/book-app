@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import booksImg from '../../images/books.svg';
 import styled from 'styled-components';
-import { setColor, setFlex, setRem, media } from './styles';
+import { setColor, setFlex, setRem, media, setLetterSpacing } from './styles';
 
 import { logout } from '../../actions/auth';
 
@@ -98,10 +98,12 @@ const NavWrapper = styled.nav`
     }
   }
   a {
-    padding-bottom: ${setRem(4)};
+    padding-bottom: ${setRem(2)};
+    font-weight: bold;
+    ${setLetterSpacing(1)};
   }
   .active {
-    border-bottom: 4px solid ${setColor.primaryMuted};
+    border-bottom: 3px solid ${setColor.mainBlack};
   }
   .burger {
     display: none;
@@ -136,7 +138,7 @@ const NavWrapper = styled.nav`
   `}
 
   ${media.phone`
-    h1 span {
+    h1 img {
       display: none;
     }
   `}

@@ -41,7 +41,9 @@ const SingleBook = ({ match, bookList }) => {
         <div className='content'>
           <div>
             <img src={imgUrl} />
-            <p>on your {list.name} list</p>
+            <p>
+              on your <span className='list-name'>{list.name}</span> list
+            </p>
           </div>
 
           <div className='info'>
@@ -73,6 +75,11 @@ const BookPageWrapper = styled.section`
       display: block;
     }
   }
+  .list-name {
+    font-weight: bold;
+    color: ${setColor.darkGrey};
+  }
+
   .info {
     max-width: ${setRem(450)};
     margin-left: ${setRem()};
