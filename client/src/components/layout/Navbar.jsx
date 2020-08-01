@@ -15,7 +15,7 @@ const Navbar = ({ logout, auth: { isAuthenticated } }) => {
   const authLinks = (
     <>
       <li>
-        <NavLink activeClass='active' to='/dashboard'>
+        <NavLink activeClass='active' to='/'>
           Your Books
         </NavLink>
       </li>
@@ -39,7 +39,7 @@ const Navbar = ({ logout, auth: { isAuthenticated } }) => {
 
   return (
     <NavWrapper navOpen={navOpen}>
-      <Link to='/dashboard'>
+      <Link to='/'>
         <h1>
           <img src={booksImg} alt='logo' />
           {/* books by mikicon from the Noun Project */}
