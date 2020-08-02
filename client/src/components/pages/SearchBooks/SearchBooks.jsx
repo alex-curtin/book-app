@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import SearchBar from './SearchBar';
 import BookItem from './BookItem';
 import Container from '../../layout/Container';
+import Loading from '../../layout/Loading';
 import { setRem, setColor } from '../../layout/styles';
 import {
   getBooks,
@@ -15,7 +16,7 @@ import {
 import { getCurrentUserBookLists } from '../../../actions/bookList';
 
 const SearchBooks = ({
-  book: { books, currentQuery },
+  book: { books, currentQuery, loading },
   getBooks,
   getMoreBooks,
   setCurrentQuery,
