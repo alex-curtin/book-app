@@ -2,7 +2,6 @@ import { createGlobalStyle } from 'styled-components';
 import { setColor, setFont } from './styles';
 
 const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
   
   * {
     margin: 0;
