@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import GlobalStyles from './components/layout/GlobalStyles';
 
 import Navbar from './components/layout/Navbar';
@@ -30,10 +30,11 @@ const App = () => {
       <GlobalStyles />
       <Navbar />
       <Switch>
+        <Route exact path='/' render={() => <Redirect to='dashboard' />} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/register' component={Register} />
         <Route exact path='/books' component={SearchBooks} />
-        <PrivateRoute exact path='/' component={Dashboard} />
+        <PrivateRoute exact path='/dashboard' component={Dashboard} />
         <PrivateRoute
           exact
           path='/:list_name/:book_id'

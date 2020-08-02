@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { setRem, setColor, media } from '../../layout/styles';
 import { getCurrentUserBookLists } from '../../../actions/bookList';
+import { clearBooks } from '../../../actions/book';
 import Recommended from './Recommended';
 import SwitchList from './SwitchList';
 import Container from '../../layout/Container';
 
-const SingleBook = ({ match, bookList }) => {
+const SingleBook = ({ match, bookList, clearBooks }) => {
+  useEffect(() => {
+    return () => clearBooks();
+  }, [clearBooks]);
+
   const { book_id, list_name } = match.params;
   const { currentUserLists } = bookList;
 
@@ -40,7 +45,7 @@ const SingleBook = ({ match, bookList }) => {
 
         <div className='content'>
           <div>
-            <img src={imgUrl} />
+            <img src={imgUrl} alt={title} />
             <p>
               on your <span className='list-name'>{list.name}</span> list
             </p>
@@ -115,6 +120,7 @@ const mapStateToProps = (state) => ({
   book: state.book,
 });
 
-export default connect(mapStateToProps, { getCurrentUserBookLists })(
-  SingleBook
-);
+export default connect(mapStateToProps, {
+  getCurrentUserBookLists,
+  clearBooks,
+})(SingleBook);

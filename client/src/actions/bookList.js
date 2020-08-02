@@ -1,7 +1,5 @@
 import axios from 'axios';
-import { setAlert } from './alert';
 import {
-  GET_BOOKS,
   GET_BOOKLISTS,
   BOOKLIST_ERROR,
   UPDATE_BOOKLIST,

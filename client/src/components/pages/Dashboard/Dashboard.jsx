@@ -17,7 +17,7 @@ const Dashboard = ({
 }) => {
   useEffect(() => {
     getCurrentUserBookLists();
-  }, []);
+  }, [getCurrentUserBookLists]);
 
   return loading ? (
     <Loading />

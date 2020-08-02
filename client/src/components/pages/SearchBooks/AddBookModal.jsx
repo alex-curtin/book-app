@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Modal from '../../layout/Modal';
-import { Button, SmallButton } from '../../layout/Button';
+import { Button } from '../../layout/Button';
 
 const AddBookModal = ({ bookList, handleSubmit, toggleModal, isOpen }) => {
   const [name, setName] = useState('');

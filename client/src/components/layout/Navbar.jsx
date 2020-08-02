@@ -5,7 +5,14 @@ import PropTypes from 'prop-types';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import booksImg from '../../images/books.svg';
 import styled from 'styled-components';
-import { setColor, setFlex, setRem, media, setLetterSpacing } from './styles';
+import {
+  setColor,
+  setFlex,
+  setRem,
+  media,
+  setLetterSpacing,
+  setFont,
+} from './styles';
 
 import { logout } from '../../actions/auth';
 
@@ -15,7 +22,7 @@ const Navbar = ({ logout, auth: { isAuthenticated } }) => {
   const authLinks = (
     <>
       <li>
-        <NavLink activeClass='active' to='/'>
+        <NavLink activeClassName='active' to='/dashboard'>
           Your Books
         </NavLink>
       </li>
@@ -30,7 +37,7 @@ const Navbar = ({ logout, auth: { isAuthenticated } }) => {
   const guestLinks = (
     <>
       <li>
-        <NavLink activeClass='active' to='/login'>
+        <NavLink activeClassName='active' to='/login'>
           Log In
         </NavLink>
       </li>
@@ -39,11 +46,11 @@ const Navbar = ({ logout, auth: { isAuthenticated } }) => {
 
   return (
     <NavWrapper navOpen={navOpen}>
-      <Link to='/'>
+      <Link to='/dashboard'>
         <h1>
           <img src={booksImg} alt='logo' />
           {/* books by mikicon from the Noun Project */}
-          <span>Book App</span>
+          <span>BookApp</span>
         </h1>
       </Link>
       <GiHamburgerMenu
@@ -54,7 +61,7 @@ const Navbar = ({ logout, auth: { isAuthenticated } }) => {
       />
       <ul>
         <li>
-          <NavLink activeClass='active' to='/books'>
+          <NavLink activeClassName='active' to='/books'>
             Find Books
           </NavLink>
         </li>
@@ -98,12 +105,26 @@ const NavWrapper = styled.nav`
     }
   }
   a {
-    padding-bottom: ${setRem(2)};
-    font-weight: bold;
+    ${setFont.display};
+    padding-bottom: ${setRem(4)};
+    font-weight: 500;
     ${setLetterSpacing(1)};
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: ${setColor.mainBlack};
+      transition: all 0.5s ease-in-out;
+    }
   }
   .active {
-    border-bottom: 3px solid ${setColor.mainBlack};
+    &::after {
+      width: 100%;
+    }
   }
   .burger {
     display: none;

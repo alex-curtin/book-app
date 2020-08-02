@@ -21,7 +21,7 @@ export const setColor = {
 
 export const setFont = {
   main: 'font-family: Helvetica, sans-serif',
-  display: 'font-family: Helvetica, san-serif',
+  display: 'font-family: "Source Sans Pro", san-serif',
 };
 
 export const setShadow = {

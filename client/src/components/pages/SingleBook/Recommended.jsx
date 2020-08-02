@@ -7,7 +7,7 @@ import RecommendedItem from './RecommendedItem';
 const Recomended = ({ getBooks, author, book, googleId }) => {
   useEffect(() => {
     getBooks(author);
-  }, [author]);
+  }, [author, getBooks]);
 
   const recommendedBooks = book.books
     .filter((book) => book.id !== googleId && book.volumeInfo.imageLinks)

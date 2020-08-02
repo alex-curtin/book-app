@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { setRem, setShadow, setBorder, setColor } from '../../layout/styles';
+import { setRem, setBorder, setColor } from '../../layout/styles';
 
 const SearchBar = ({ query, handleSubmit, setQuery }) => {
   return (

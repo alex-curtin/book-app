@@ -7,13 +7,11 @@ import {
   GET_BOOK,
   BOOK_ERROR,
   ADD_BOOK,
-  UPDATE_PROFILE,
   UPDATE_BOOKLIST,
   CLEAR_BOOKS,
 } from './types';
 import { BASE_URL } from './constants';
 
-const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 const extAxios = axios.create();
 extAxios.defaults.headers.common = {};
 

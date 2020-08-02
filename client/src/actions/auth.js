@@ -7,7 +7,6 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
-  CLEAR_PROFILE,
 } from './types';
 import { BASE_URL } from './constants';
 import { setAlert } from './alert';

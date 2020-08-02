@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { setColor, setFlex, setBorder, setRem } from './styles';
-import { Button } from './Button';
+import { setColor, setFlex, setRem } from './styles';
 
 const Modal = ({ children, isOpen }) => {
   return (

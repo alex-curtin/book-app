@@ -24,8 +24,8 @@ const SearchBooks = ({
 }) => {
   useEffect(() => {
     getCurrentUserBookLists();
-    clearBooks();
-  }, []);
+    return () => clearBooks();
+  }, [clearBooks, getCurrentUserBookLists]);
 
   const [query, setQuery] = useState('');
   const [index, setIndex] = useState(0);
