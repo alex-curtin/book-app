@@ -6,7 +6,7 @@ const BookWrapper = styled.article`
   height: ${setRem(195)};
   width: 100%;
   margin-bottom: ${setRem()};
-  ${setShadow.light};
+  ${setShadow.large};
   background: ${setColor.mainWhite};
   border-radius: ${setRem(3)};
   overflow: hidden;

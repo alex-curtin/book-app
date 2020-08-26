@@ -25,9 +25,12 @@ export const setFont = {
 };
 
 export const setShadow = {
-  light: 'box-shadow: 3px 7px 17px -6px rgba(0,0,0,0.89);',
-  dark: 'box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.75);',
-  darkest: 'box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);',
+  light:
+    'box-shadow:  0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);',
+  medium:
+    'box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);',
+  large:
+    'box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);',
 };
 
 export const setFlex = ({ x = 'center', y = 'center' } = {}) => {

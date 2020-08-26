@@ -76,7 +76,7 @@ const ItemWrapper = styled.div`
   margin-right: ${setRem()};
   margin-bottom: ${setRem()};
   position: relative;
-  ${setShadow.light};
+  ${setShadow.medium};
   max-height: ${setRem(200)};
   &:hover {
     .overlay {

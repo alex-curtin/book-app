@@ -52,7 +52,7 @@ const Wrapper = styled.div`
   margin-right: ${setRem()};
   margin-bottom: ${setRem()};
   max-height: ${setRem(200)};
-  ${setShadow.light};
+  ${setShadow.medium};
   &:hover {
     .overlay {
       visibility: ${(props) => (props.showModal ? 'hidden' : 'visible')};

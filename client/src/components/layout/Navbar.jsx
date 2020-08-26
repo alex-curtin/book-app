@@ -12,6 +12,7 @@ import {
   media,
   setLetterSpacing,
   setFont,
+  setShadow,
 } from './styles';
 
 import { logout } from '../../actions/auth';
@@ -85,17 +86,21 @@ const NavWrapper = styled.nav`
   ${setFlex({ x: 'space-between' })};
   padding: ${setRem(12)} ${setRem(24)};
   width: 100vw;
-  position: relative;
+  position: fixed;
+  z-index: 100;
+  ${setShadow.light};
   h1 {
     ${setFlex({ x: 'flex-start' })};
-  }
-  svg {
-    margin-right: ${setRem(12)};
-    color: ${setColor.primaryDark};
+    font-size: ${setRem(26)};
+    ${setLetterSpacing(-1)};
+    font-weight: bold;
+    color: ${setColor.mainBlack};
   }
   img {
-    height: ${setRem(50)};
+    height: ${setRem(28)};
     margin-right: ${setRem(8)};
+    background: ${setColor.primaryMuted};
+    border-radius: 50%;
   }
   ul {
     ${setFlex()};
@@ -106,9 +111,9 @@ const NavWrapper = styled.nav`
   }
   a {
     ${setFont.display};
+    color: ${setColor.mainBlack};
     padding-bottom: ${setRem(4)};
     font-weight: 500;
-    ${setLetterSpacing(1)};
     position: relative;
     &::after {
       content: '';

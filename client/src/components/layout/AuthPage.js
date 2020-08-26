@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import { setRem, setColor, setFlex } from './styles';
 
 export const AuthPage = styled.section`
-  width: 90vw;
-  margin: ${setRem()} auto;
+  margin: 0 auto;
   ${setFlex};
   flex-direction: column;
   input,

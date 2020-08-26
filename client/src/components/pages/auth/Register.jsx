@@ -7,6 +7,7 @@ import { setAlert } from '../../../actions/alert';
 import { AuthPage } from '../../layout/AuthPage';
 import { Button } from '../../layout/Button';
 import Alert from '../../layout/Alert';
+import Container from '../../layout/Container';
 import validateEmail from '../../../utils/validateEmail';
 
 const Register = ({ register, isAuthenticated, setAlert }) => {
@@ -41,56 +42,58 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
 
   return (
     <AuthPage>
-      <h2>Create An Account</h2>
-      <form className='form' onSubmit={(e) => handleSubmit(e)}>
-        <input
-          type='text'
-          placeholder='Name...'
-          name='name'
-          value={name}
-          onChange={(e) => handleChange(e)}
-          required
-        />
+      <Container>
+        <h2>Create An Account</h2>
+        <form className='form' onSubmit={(e) => handleSubmit(e)}>
+          <input
+            type='text'
+            placeholder='Name...'
+            name='name'
+            value={name}
+            onChange={(e) => handleChange(e)}
+            required
+          />
 
-        <input
-          type='email'
-          placeholder='Email address...'
-          name='email'
-          value={email}
-          onChange={(e) => handleChange(e)}
-          required
-        />
+          <input
+            type='email'
+            placeholder='Email address...'
+            name='email'
+            value={email}
+            onChange={(e) => handleChange(e)}
+            required
+          />
 
-        <input
-          type='password'
-          placeholder='Password'
-          name='password'
-          value={password}
-          onChange={(e) => handleChange(e)}
-          required
-        />
+          <input
+            type='password'
+            placeholder='Password'
+            name='password'
+            value={password}
+            onChange={(e) => handleChange(e)}
+            required
+          />
 
-        <input
-          type='password'
-          placeholder='Confirm Password'
-          name='password2'
-          value={password2}
-          onChange={(e) => handleChange(e)}
-          required
-        />
+          <input
+            type='password'
+            placeholder='Confirm Password'
+            name='password2'
+            value={password2}
+            onChange={(e) => handleChange(e)}
+            required
+          />
 
-        <Button
-          as='input'
-          type='submit'
-          className='btn'
-          value='Sign Up'
-          disabled={disableSubmit}
-        />
-      </form>
-      <Alert />
-      <p>
-        Already have an account? <Link to='/login'>Log In</Link>
-      </p>
+          <Button
+            as='input'
+            type='submit'
+            className='btn'
+            value='Sign Up'
+            disabled={disableSubmit}
+          />
+        </form>
+        <Alert />
+        <p>
+          Already have an account? <Link to='/login'>Log In</Link>
+        </p>
+      </Container>
     </AuthPage>
   );
 };

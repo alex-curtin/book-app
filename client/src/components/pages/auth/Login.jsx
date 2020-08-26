@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { login } from '../../../actions/auth';
 import { AuthPage } from '../../layout/AuthPage';
 import { Button } from '../../layout/Button';
+import Container from '../../layout/Container';
 import Alert from '../../layout/Alert';
 import validateEmail from '../../../utils/validateEmail';
 
@@ -31,36 +32,38 @@ const Login = ({ login, isAuthenticated }) => {
 
   return (
     <AuthPage>
-      <h2>Login</h2>
-      <form className='form' onSubmit={(e) => handleSubmit(e)}>
-        <input
-          type='email'
-          placeholder='Email address'
-          name='email'
-          value={email}
-          onChange={(e) => handleChange(e)}
-          required
-        />
+      <Container>
+        <h2>Login</h2>
+        <form className='form' onSubmit={(e) => handleSubmit(e)}>
+          <input
+            type='email'
+            placeholder='Email address'
+            name='email'
+            value={email}
+            onChange={(e) => handleChange(e)}
+            required
+          />
 
-        <input
-          type='password'
-          placeholder='Password'
-          name='password'
-          value={password}
-          onChange={(e) => handleChange(e)}
-          required
-        />
+          <input
+            type='password'
+            placeholder='Password'
+            name='password'
+            value={password}
+            onChange={(e) => handleChange(e)}
+            required
+          />
 
-        <Button
-          as='input'
-          type='submit'
-          className='btn'
-          value='Login'
-          disabled={password.length < 6 || !validateEmail(email)}
-        />
-      </form>
-      <Alert />
-      <Link to='/register'>create account</Link>
+          <Button
+            as='input'
+            type='submit'
+            className='btn'
+            value='Login'
+            disabled={password.length < 6 || !validateEmail(email)}
+          />
+        </form>
+        <Alert />
+        <Link to='/register'>create account</Link>
+      </Container>
     </AuthPage>
   );
 };

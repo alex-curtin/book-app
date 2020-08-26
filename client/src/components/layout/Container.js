@@ -6,7 +6,7 @@ const Container = styled.main`
   width: 85vw;
   max-width: ${setRem(1200)};
   margin: 0 auto;
-  padding-top: ${setRem()};
+  padding-top: ${setRem(80)};
 `;
 
 export default Container;
