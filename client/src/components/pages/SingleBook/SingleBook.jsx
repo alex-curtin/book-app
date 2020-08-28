@@ -8,15 +8,33 @@ import { getCurrentUserBookLists } from '../../../actions/bookList';
 import { clearBooks } from '../../../actions/book';
 import Recommended from './Recommended';
 import SwitchList from './SwitchList';
+import Loading from '../../layout/Loading';
 import Container from '../../layout/Container';
 
-const SingleBook = ({ match, bookList, clearBooks }) => {
+const SingleBook = ({
+  match,
+  bookList,
+  clearBooks,
+  getCurrentUserBookLists,
+}) => {
   useEffect(() => {
+    // clear out search results on unmount
     return () => clearBooks();
   }, [clearBooks]);
+  useEffect(() => {
+    // load current user's booklists if necessary
+    // (ie. if not navigating from dashboard)
+    if (bookList.currentUserLists.length === 0) {
+      getCurrentUserBookLists();
+    }
+  }, []);
 
   const { book_id, list_name } = match.params;
-  const { currentUserLists } = bookList;
+  const { currentUserLists, loading } = bookList;
+
+  if (loading) {
+    return <Loading />;
+  }
 
   const list = currentUserLists.find((list) => list.name === list_name);
 
@@ -113,6 +131,8 @@ const BookPageWrapper = styled.section`
 SingleBook.propTypes = {
   match: PropTypes.object.isRequired,
   bookList: PropTypes.object.isRequired,
+  clearBooks: PropTypes.func.isRequired,
+  getCurrentUserBookLists: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
