@@ -1,12 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import { setColor, setRem, setFlex } from './styles';
+import Container from './Container';
 
 const Loading = () => {
   return (
-    <LoadingWrapper>
-      <div className='loader'></div>
-    </LoadingWrapper>
+    <Container>
+      <LoadingWrapper>
+        <div className='loader'></div>
+      </LoadingWrapper>
+    </Container>
   );
 };
 
