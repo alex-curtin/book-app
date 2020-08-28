@@ -41,8 +41,8 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
   }
 
   return (
-    <AuthPage>
-      <Container>
+    <Container>
+      <AuthPage>
         <h2>Create An Account</h2>
         <form className='form' onSubmit={(e) => handleSubmit(e)}>
           <input
@@ -93,8 +93,8 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
         <p>
           Already have an account? <Link to='/login'>Log In</Link>
         </p>
-      </Container>
-    </AuthPage>
+      </AuthPage>
+    </Container>
   );
 };
 

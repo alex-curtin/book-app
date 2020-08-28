@@ -31,8 +31,8 @@ const Login = ({ login, isAuthenticated }) => {
   }
 
   return (
-    <AuthPage>
-      <Container>
+    <Container>
+      <AuthPage>
         <h2>Login</h2>
         <form className='form' onSubmit={(e) => handleSubmit(e)}>
           <input
@@ -63,8 +63,8 @@ const Login = ({ login, isAuthenticated }) => {
         </form>
         <Alert />
         <Link to='/register'>create account</Link>
-      </Container>
-    </AuthPage>
+      </AuthPage>
+    </Container>
   );
 };
 

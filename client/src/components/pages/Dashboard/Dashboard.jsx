@@ -22,8 +22,8 @@ const Dashboard = ({
   return loading ? (
     <Loading />
   ) : (
-    <DashboardWrapper>
-      <Container>
+    <Container>
+      <DashboardWrapper>
         {currentUserLists && currentUserLists.length > 0 ? (
           <>
             <h2>Your Books</h2>
@@ -37,8 +37,8 @@ const Dashboard = ({
             <Link to='/books'>Search books</Link>
           </>
         )}
-      </Container>
-    </DashboardWrapper>
+      </DashboardWrapper>
+    </Container>
   );
 };
 

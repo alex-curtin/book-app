@@ -52,8 +52,8 @@ const SingleBook = ({
   } = bookItem.book;
 
   return (
-    <BookPageWrapper>
-      <Container>
+    <Container>
+      <BookPageWrapper>
         <Link to='/dashboard'>back to lists</Link>
         <h2>
           {title}
@@ -82,8 +82,8 @@ const SingleBook = ({
           </div>
         </div>
         <Recommended author={authors[0]} googleId={googleId} />
-      </Container>
-    </BookPageWrapper>
+      </BookPageWrapper>
+    </Container>
   );
 };
 

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import booksImg from '../../images/books.svg';
 import styled from 'styled-components';
+import { Button } from './Button';
 import {
   setColor,
   setFlex,
@@ -13,6 +14,7 @@ import {
   setLetterSpacing,
   setFont,
   setShadow,
+  setBorder,
 } from './styles';
 
 import { logout } from '../../actions/auth';
@@ -28,9 +30,9 @@ const Navbar = ({ logout, auth: { isAuthenticated } }) => {
         </NavLink>
       </li>
       <li>
-        <a onClick={logout} href='#!'>
+        <LogoutButton onClick={logout} theme='primary'>
           Logout
-        </a>
+        </LogoutButton>
       </li>
     </>
   );
@@ -63,7 +65,7 @@ const Navbar = ({ logout, auth: { isAuthenticated } }) => {
       <ul>
         <li>
           <NavLink activeClassName='active' to='/books'>
-            Find Books
+            Search Books
           </NavLink>
         </li>
         {isAuthenticated ? authLinks : guestLinks}
@@ -80,6 +82,15 @@ Navbar.propTypes = {
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
+
+const LogoutButton = styled(Button)`
+  ${setBorder()};
+  background: ${setColor.primaryMuted};
+  &:hover {
+    ${setBorder()};
+    background: ${setColor.primary};
+  }
+`;
 
 const NavWrapper = styled.nav`
   background: ${setColor.primary};
@@ -113,7 +124,7 @@ const NavWrapper = styled.nav`
     ${setFont.display};
     color: ${setColor.mainBlack};
     padding-bottom: ${setRem(4)};
-    font-weight: 500;
+    font-weight: 600;
     position: relative;
     &::after {
       content: '';

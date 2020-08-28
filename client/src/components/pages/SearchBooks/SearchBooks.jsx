@@ -45,8 +45,8 @@ const SearchBooks = ({
   };
 
   return (
-    <SearchBooksWrapper>
-      <Container>
+    <Container>
+      <SearchBooksWrapper>
         <h2>Search for books</h2>
         <SearchBar handleSubmit={loadBooks} setQuery={setQuery} query={query} />
         <div className='books'>
@@ -58,8 +58,8 @@ const SearchBooks = ({
             <span onClick={loadMoreBooks}>load more results</span>
           </p>
         )}
-      </Container>
-    </SearchBooksWrapper>
+      </SearchBooksWrapper>
+    </Container>
   );
 };
 
