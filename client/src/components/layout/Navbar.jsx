@@ -95,7 +95,7 @@ const LogoutButton = styled(Button)`
 const NavWrapper = styled.nav`
   background: ${setColor.primary};
   ${setFlex({ x: 'space-between' })};
-  padding: ${setRem(12)} ${setRem(24)};
+  padding: ${setRem(12)} ${setRem(68)};
   width: 100vw;
   position: fixed;
   z-index: 100;
@@ -147,6 +147,7 @@ const NavWrapper = styled.nav`
   }
 
   ${media.tablet`
+  padding: ${setRem(12)} ${setRem(24)};
     .burger {
       display: block;
       margin-right: ${setRem(40)};
@@ -171,12 +172,6 @@ const NavWrapper = styled.nav`
       &:hover {
         background: ${setColor.primaryMuted};
       }
-    }
-  `}
-
-  ${media.phone`
-    h1 img {
-      display: none;
     }
   `}
 `;
